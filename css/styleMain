@@ -4,9 +4,11 @@
 }
 
 .topNav a {
+  text-decoration: none;
   float: right;
+  color: black;
   text-align: center;
-  padding: 20px 20px;
+  padding: 30px 2%;
 }
 
 .topNav a:hover {
