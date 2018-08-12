@@ -22,7 +22,7 @@
   float: left;
 }
 
-.active {
+#active {
   transform: translateY (-5px);
   color: blue;
 }
