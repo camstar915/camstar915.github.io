@@ -1,3 +1,5 @@
+@import url("libraries/hover.css");
+
 .topNav {
   overflow: hidden;
   color: black;
@@ -18,5 +20,3 @@
 .topNav h1 {
   float: left;
 }
-
-@import url("libraries/hover-min.css");
