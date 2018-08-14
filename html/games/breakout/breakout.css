@@ -1,0 +1,6 @@
+/*Universal reset. asterisk is universal selector*/
+#breakoutCanvas {padding: 0; margin: 0;}
+
+#breakoutCanvas {
+  background: #eee; display: block; margin: 0 auto
+}
