@@ -21,6 +21,9 @@ var paddleSpeed = 7;
 var rightPressed = false;
 var leftPressed = false;
 
+//value used to play or pause game based on if the mouse is over the canvas
+var play = false;
+
 //sets up stuff for the bricks
 var brickRowCount = 3;
 var brickColumnCount = 5;
@@ -85,42 +88,50 @@ function draw(){
   drawPaddle();
   drawScore();
   collisionDetection();
-  x += dx;                                        //updates axis value (moves ball)
-  y += dy;
+  if (play){
+    x += dx;                                        //updates axis value (moves ball)
+    y += dy;
 
-  if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){     //changes ball direction if hits left or right
-    dx = -dx;
-  };
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){     //changes ball direction if hits left or right
+      dx = -dx;
+    };
 
-  if(y + dy < ballRadius){    //changes ball direction if hits top or bottom
-    dy = -dy;
-  } else if( y + dy > canvas.height-ballRadius){                  //checks if ball hits bottom
-    if (x > paddlePos && x < paddlePos + paddleWidth) {
+    if(y + dy < ballRadius){    //changes ball direction if hits top or bottom
       dy = -dy;
-    } else {
-    alert("GAME OVER");
-    document.location.reload();
+    } else if( y + dy > canvas.height-ballRadius){                  //checks if ball hits bottom
+      if (x > paddlePos && x < paddlePos + paddleWidth) {
+        dy = -dy;
+      } else {
+      alert("GAME OVER");
+      document.location.reload();
+      }
     }
-  }
 
-  if(leftPressed && paddlePos >= 0){                               //moves paddle within canvas based on key up/down events
-    paddlePos -= paddleSpeed;
-  } else if (rightPressed && paddlePos <= canvas.width-paddleWidth){
-    paddlePos += paddleSpeed;
+    if(leftPressed && paddlePos >= 0){                               //moves paddle within canvas based on key up/down events
+      paddlePos -= paddleSpeed;
+    } else if (rightPressed && paddlePos <= canvas.width-paddleWidth){
+      paddlePos += paddleSpeed;
+    };
   };
 requestAnimationFrame(draw);                                       //tells browser to keep refreshing this canvas
 };
 
+//these are used to create handlers in js for HTML events
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
+//document.addEventListener("onmouseenter", mouseOverHandler, false);
 
 //detects mouse movement as mousemove event is sent to this function
 function mouseMoveHandler(e){
-  var relativeX = e.clientX - canvas.offsetLeft;                    //creates relativeX and sets it equal to the position of the mouse (clientX)
-  if(relativeX > 0 && relativeX < canvas.width){                    //if the mouse is within the canvas width, set relativeX equal to the center of the paddle
+  var relativeX = e.clientX - canvas.offsetLeft;
+  var relativeY = e.clientY - canvas.offsetTop;                    //creates relativeX and sets it equal to the position of the mouse (clientX)
+  if(relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){                    //if the mouse is within the canvas dimensions, set relativeX equal to the center of the paddle and set play equal to true
+    play = true;
     paddlePos = relativeX - paddleWidth/2;
-  }
+  } else if (relativeX < 0 || relativeX > canvas.width || relativeY < 0 || relativeY > canvas.height){            //when mouse leaves canvas, set play to false
+    play = false;
+  };
 }
 
 //function used to handle pressing an arrow key down
