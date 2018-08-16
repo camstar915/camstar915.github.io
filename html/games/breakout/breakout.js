@@ -88,6 +88,7 @@ function draw(){
   drawPaddle();
   drawScore();
   collisionDetection();
+  hideCursor();
   if (play){
     x += dx;                                        //updates axis value (moves ball)
     y += dy;
@@ -96,7 +97,7 @@ function draw(){
       dx = -dx;
     };
 
-    if(y + dy < ballRadius){    //changes ball direction if hits top or bottom
+    if(y + dy < ballRadius){    //changes ball direction if hits tops
       dy = -dy;
     } else if( y + dy > canvas.height-ballRadius){                  //checks if ball hits bottom
       if (x > paddlePos && x < paddlePos + paddleWidth) {
@@ -120,7 +121,7 @@ requestAnimationFrame(draw);                                       //tells brows
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
-//document.addEventListener("onmouseenter", mouseOverHandler, false);
+document.addEventListener("touchmove", touchHandler);
 
 //detects mouse movement as mousemove event is sent to this function
 function mouseMoveHandler(e){
@@ -129,9 +130,21 @@ function mouseMoveHandler(e){
   if(relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){                    //if the mouse is within the canvas dimensions, set relativeX equal to the center of the paddle and set play equal to true
     play = true;
     paddlePos = relativeX - paddleWidth/2;
-  } else if (relativeX < 0 || relativeX > canvas.width || relativeY < 0 || relativeY > canvas.height){            //when mouse leaves canvas, set play to false
+  } else {
     play = false;
-  };
+  }
+}
+
+//function used to detect touches on touchscreens
+function touchHandler (e){
+  var relativeX = e.touches[0].pageX - canvas.offsetLeft;
+  var relativeY = e.touches[0].pageY - canvas.offsetTop;
+  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativey < canvas.height){
+    play = true;
+    paddlePos = relativeX - paddleWidth/2;
+  } else {
+    play = false;
+  }
 }
 
 //function used to handle pressing an arrow key down
@@ -180,26 +193,8 @@ function drawScore(){
   ctx.fillText("Score: "+ score, 8, 20);                         //tells fillText what to write, and where to write it
 }
 
+function hideCursor (){
+  document.getElementById("breakoutCanvas").style.cursor = "none";
+}
+
 draw();
-
-
-
-/*
-ctx.beginPath();
-ctx.rect(20,40,50,50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.arc(240,160,20,0, Math.PI*2, false);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.rect(160,10,100,40);
-ctx.strokeStyle = "rgba(0,0,255,0.5)"
-ctx.stroke();
-ctx.closePath();
-*/
