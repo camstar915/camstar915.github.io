@@ -93,13 +93,13 @@ function draw(){
     x += dx;                                        //updates axis value (moves ball)
     y += dy;
 
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){     //changes ball direction if hits left or right
+    if(x > canvas.width-ballRadius || x < ballRadius){     //changes ball direction if hits left or right
       dx = -dx;
     };
 
-    if(y + dy < ballRadius){    //changes ball direction if hits tops
+    if(y < ballRadius){    //changes ball direction if hits tops
       dy = -dy;
-    } else if( y + dy > canvas.height-ballRadius){                  //checks if ball hits bottom
+    } else if( y > canvas.height-ballRadius){                  //checks if ball hits bottom
       if (x > paddlePos && x < paddlePos + paddleWidth) {
         dy = -dy;
       } else {
@@ -175,6 +175,7 @@ function collisionDetection(){
       if(b.status == 1){                                          //makes sure status hasn't been changed to 0
         if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight){ //checks if ball is inside brick
           dy = -dy;
+          speedUp();
           b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
           score++;
           if(score == brickRowCount * brickColumnCount){          //if score equals number of bricks, alerts a win
@@ -184,6 +185,19 @@ function collisionDetection(){
         }
       }
     }
+  }
+}
+
+function speedUp(){
+  if (dx < 0){
+    dx -= .5;
+  } else {
+    dx += .5;
+  }
+  if (dy < 0){
+    dy -= .5;
+  } else {
+    dx += .5;
   }
 }
 
