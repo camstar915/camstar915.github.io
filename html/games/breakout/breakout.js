@@ -88,17 +88,18 @@ function draw(){
   drawPaddle();
   drawScore();
   collisionDetection();
+  hideCursor();
   if (play){
     x += dx;                                        //updates axis value (moves ball)
     y += dy;
 
-    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius){     //changes ball direction if hits left or right
+    if(x > canvas.width-ballRadius || x < ballRadius){     //changes ball direction if hits left or right
       dx = -dx;
     };
 
-    if(y + dy < ballRadius){    //changes ball direction if hits top or bottom
+    if(y < ballRadius){    //changes ball direction if hits tops
       dy = -dy;
-    } else if( y + dy > canvas.height-ballRadius){                  //checks if ball hits bottom
+    } else if( y > canvas.height-ballRadius){                  //checks if ball hits bottom
       if (x > paddlePos && x < paddlePos + paddleWidth) {
         dy = -dy;
       } else {
@@ -120,7 +121,7 @@ requestAnimationFrame(draw);                                       //tells brows
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
-//document.addEventListener("onmouseenter", mouseOverHandler, false);
+document.addEventListener("touchmove", touchHandler, false);
 
 //detects mouse movement as mousemove event is sent to this function
 function mouseMoveHandler(e){
@@ -129,9 +130,21 @@ function mouseMoveHandler(e){
   if(relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){                    //if the mouse is within the canvas dimensions, set relativeX equal to the center of the paddle and set play equal to true
     play = true;
     paddlePos = relativeX - paddleWidth/2;
-  } else if (relativeX < 0 || relativeX > canvas.width || relativeY < 0 || relativeY > canvas.height){            //when mouse leaves canvas, set play to false
+  } else {
     play = false;
-  };
+  }
+}
+
+//function used to detect touches on touchscreens
+function touchHandler (e){
+  var relativeX = e.touches[0].clientX - canvas.offsetLeft;
+  var relativeY = e.touches[0].clientY - canvas.offsetTop;
+  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){
+    play = true;
+    paddlePos = relativeX - paddleWidth/2;
+  } else {
+    play = false;
+  }
 }
 
 //function used to handle pressing an arrow key down
@@ -162,6 +175,7 @@ function collisionDetection(){
       if(b.status == 1){                                          //makes sure status hasn't been changed to 0
         if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight){ //checks if ball is inside brick
           dy = -dy;
+          speedUp();
           b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
           score++;
           if(score == brickRowCount * brickColumnCount){          //if score equals number of bricks, alerts a win
@@ -174,32 +188,31 @@ function collisionDetection(){
   }
 }
 
+function speedUp(){
+  if (dx < 0 && dy < 0){
+    dx -= .5;
+    dy -= .5;
+  } else if (dx < 0 && dy > 0) {
+    dx -= .5;
+    dy += .5;
+  } else if (dx > 0 && dy < 0){
+    dx += .5;
+    dy -= .5;
+  } else {
+    dx += .5;
+    dy += .5;
+  }
+}
+
+
 function drawScore(){
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Score: "+ score, 8, 20);                         //tells fillText what to write, and where to write it
 }
 
+function hideCursor (){
+  document.getElementById("breakoutCanvas").style.cursor = "none";
+}
+
 draw();
-
-
-
-/*
-ctx.beginPath();
-ctx.rect(20,40,50,50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.arc(240,160,20,0, Math.PI*2, false);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
-
-ctx.beginPath();
-ctx.rect(160,10,100,40);
-ctx.strokeStyle = "rgba(0,0,255,0.5)"
-ctx.stroke();
-ctx.closePath();
-*/

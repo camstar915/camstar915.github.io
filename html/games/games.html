@@ -3,7 +3,8 @@
 
 <head>
   <title>Games</title>
-  <meta charset = "utf-8" />
+  <meta charset = "utf-8">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
   <link rel="stylesheet" href="../../css/styleMain.css">
   <link rel="stylesheet" href="breakout/breakout.css">
 </head>
@@ -19,7 +20,11 @@
     <a class = "active navButton hvr-float-shadow" href = "games.html">Games</a>
   </div>
 
-  <canvas id = "breakoutCanvas" width ="480" height="320"></canvas>
+  <div class = "container">
+    <canvas id = "breakoutCanvas" width ="480" height="320"></canvas>
+
+    <!--<input type="button" id = "breakoutStart" value = "Start">-->
+  </div>
 
   <script src="breakout/breakout.js"></script>
 
