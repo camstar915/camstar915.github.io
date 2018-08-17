@@ -11,6 +11,12 @@ var dy = -2;
 
 var ballRadius = 10;
 
+var ballSizeSlider = document.getElementById("ballSizeSlider");
+ballSizeSlider.oninput = function (){
+  ballRadius = this.value;
+  ballSizeSlider.style = "::-webkit-slider-thumb {width = ballRadius*2, height = ballRadius*2}"
+}
+
 //builds paddle
 var paddleHeight = 10;
 var paddleWidth = 80;
