@@ -9,7 +9,7 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 
-var ballRadius = 30;
+var ballRadius = 2;
 
 //builds paddle
 var paddleHeight = 10;
