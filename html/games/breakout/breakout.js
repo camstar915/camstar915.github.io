@@ -13,7 +13,7 @@ var ballRadius = 2;
 
 //builds paddle
 var paddleHeight = 10;
-var paddleWidth = 75;
+var paddleWidth = 400;
 var paddlePos = (canvas.width-paddleWidth)/2
 var paddleSpeed = 7;
 
