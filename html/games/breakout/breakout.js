@@ -103,6 +103,7 @@ function draw(){
       if (x > paddlePos && x < paddlePos + paddleWidth) {
         dy = -dy;
       } else {
+      cancelAnimationFrame(draw);
       alert("GAME OVER");
       document.location.reload();
       }
