@@ -9,11 +9,11 @@ var y = canvas.height-30;
 var dx = 2;
 var dy = -2;
 
-var ballRadius = 2;
+var ballRadius = 10;
 
 //builds paddle
 var paddleHeight = 10;
-var paddleWidth = 400;
+var paddleWidth = 80;
 var paddlePos = (canvas.width-paddleWidth)/2
 var paddleSpeed = 7;
 
