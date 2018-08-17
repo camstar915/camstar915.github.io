@@ -139,7 +139,7 @@ function mouseMoveHandler(e){
 function touchHandler (e){
   var relativeX = e.touches[0].clientX - canvas.offsetLeft;
   var relativeY = e.touches[0].clientY - canvas.offsetTop;
-  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){
+  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0){
     play = true;
     paddlePos = relativeX - paddleWidth/2;
   } else {
