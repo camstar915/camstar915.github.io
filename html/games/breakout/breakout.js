@@ -121,7 +121,7 @@ requestAnimationFrame(draw);                                       //tells brows
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
-document.addEventListener("touchmove", touchHandler);
+document.addEventListener("touchmove", touchHandler, false);
 
 //detects mouse movement as mousemove event is sent to this function
 function mouseMoveHandler(e){
@@ -137,9 +137,9 @@ function mouseMoveHandler(e){
 
 //function used to detect touches on touchscreens
 function touchHandler (e){
-  var relativeX = e.touches[0].pageX - canvas.offsetLeft;
-  var relativeY = e.touches[0].pageY - canvas.offsetTop;
-  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativey < canvas.height){
+  var relativeX = e.touches[0].clientX - canvas.offsetLeft;
+  var relativeY = e.touches[0].clientY - canvas.offsetTop;
+  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){
     play = true;
     paddlePos = relativeX - paddleWidth/2;
   } else {
@@ -189,17 +189,21 @@ function collisionDetection(){
 }
 
 function speedUp(){
-  if (dx < 0){
+  if (dx < 0 && dy < 0){
     dx -= .5;
-  } else {
+    dy -= .5;
+  } else if (dx < 0 && dy > 0) {
+    dx -= .5;
+    dy += .5;
+  } else if (dx > 0 && dy < 0){
     dx += .5;
-  }
-  if (dy < 0){
     dy -= .5;
   } else {
     dx += .5;
+    dy += .5;
   }
 }
+
 
 function drawScore(){
   ctx.font = "16px Arial";
