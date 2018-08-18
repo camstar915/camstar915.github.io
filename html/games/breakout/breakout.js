@@ -107,6 +107,8 @@ function draw(){
       dy = -dy;
     } else if( y > canvas.height-ballRadius){                  //checks if ball hits bottom
       if (x > paddlePos && x < paddlePos + paddleWidth) {
+        var paddleCenter = paddlePos + (paddleWidth/2);
+        dx = (x - paddleCenter)/5;
         dy = -dy;
       } else {
       cancelAnimationFrame(draw);
