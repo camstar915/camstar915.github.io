@@ -3,7 +3,7 @@
   padding: 0;
   background: #eee;
   display: block;
-  margin-left: 15%;
+  margin-left: 25%;
 }
 
 #breakoutStart {
@@ -18,7 +18,7 @@
   height: 15px;
   border-radius: 5px;
   float: right;
-  margin-right: 15%;
+  margin-right: 25%;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
