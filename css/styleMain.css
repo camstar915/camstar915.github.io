@@ -1,9 +1,5 @@
 @import url("libraries/hover.css");
 
-body {
-  min-width: 800px;
-}
-
 .topNav {
   overflow: hidden;
   margin: 5%;
