@@ -115,7 +115,7 @@ function draw(){
         dx = (x - paddleCenter)/5;
         dy = -dy;
       } else {
-      cancelAnimationFrame(draw);
+      play = false;
       alert("GAME OVER");
       document.location.reload();
       }
