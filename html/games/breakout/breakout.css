@@ -1,11 +1,48 @@
 #breakoutCanvas {
+  float: left;
   padding: 0;
   background: #eee;
   display: block;
-  margin: 0 auto;
+  margin-left: 25%;
 }
 
-#breakoutStart {
-  display: block;
-  margin: 0 auto;
+.slider {
+  -webkit-appearance: none;
+  background: #eee;
+  opacity: 0.7;
+  height: 15px;
+  border-radius: 5px;
+  float: right;
+  margin-right: 25%;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #0095DD;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #0095DD;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+#ballSizeSlider {
+  margin-top: 50px;
+}
+
+#rowSlider {
+  margin-top: 50px;
 }
