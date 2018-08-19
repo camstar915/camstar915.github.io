@@ -22,10 +22,6 @@
   float: left;
 }
 
-.container {
-  width = 100%;
-}
-
 *:focus {
   outline: none;
 }
