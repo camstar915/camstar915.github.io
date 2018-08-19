@@ -69,6 +69,7 @@ function drawBall() {
   ctx.closePath();
 };
 
+//draws the paddle
 function drawPaddle(){
   ctx.beginPath();
   ctx.rect(paddlePos, canvas.height-paddleHeight, paddleWidth, paddleHeight);
@@ -188,7 +189,7 @@ function keyUpHandler(e){
   }
 }
 
-
+//speeds ball after each brick hit
 function speedUp(){
   if (dx < 0 && dy < 0){
     dx -= .5;
@@ -226,18 +227,21 @@ function collisionDetection(){
   }
 }
 
+//draws score in top left corner
 function drawScore(){
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Score: "+ score, 8, 20);                         //tells fillText what to write, and where to write it
 }
 
+//draws paddleTouch value in top right corner
 function drawPaddleTouch(){
   ctx.font = "16px Arial";
   ctx.fillyStyle = "#0095DD";
   ctx.fillText("Paddle Touches: "+ paddleTouch, 330, 20);
 }
 
+//hides cursor when over canvas
 function hideCursor (){
   document.getElementById("breakoutCanvas").style.cursor = "none";
 }
