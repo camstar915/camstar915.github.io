@@ -22,6 +22,11 @@ var paddleWidth = 80;
 var paddlePos = (canvas.width-paddleWidth)/2
 var paddleSpeed = 7;
 var paddleTouch = 0;
+var superPaddle = document.getElementById("superPaddle")
+superPaddle.onclick = function(){
+  paddleWidth = 450;
+  paddlePos = (canvas.width-paddleWidth)/2;
+}
 
 //sets boolean values for arrow presses
 var rightPressed = false;
@@ -112,7 +117,7 @@ function draw(){
     if(y < ballRadius){    //changes ball direction if hits tops
       dy = -dy;
     } else if( y > canvas.height-ballRadius){                  //checks if ball hits bottom
-      if (x > paddlePos && x < paddlePos + paddleWidth) {
+      if (x > paddlePos - ballRadius && x < paddlePos + paddleWidth + ballRadius) {
         var paddleCenter = paddlePos + (paddleWidth/2);
         dx = (x - paddleCenter)/5;
         dy = -dy;
@@ -212,7 +217,7 @@ function collisionDetection(){
           b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
           score++;
           if(score == brickRowCount * brickColumnCount){          //if score equals number of bricks, alerts a win
-            alert("YOU WIN!!! CONGRATULATIONS!");
+            alert("YOU WIN!!! You broke " + brickRowCount*brickColumnCount + " bricks with " + paddleTouch + " paddle touches");
             document.location.reload();
           }
         }
