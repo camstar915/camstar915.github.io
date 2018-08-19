@@ -173,6 +173,7 @@ function touchHandler (e){
 //the variable "e" stores the keydown event
 //39 and 37 are the keycodes for the right and left arrow keys respectively
 function keyDownHandler(e){
+  play = true;
   if(e.keyCode == 39){
     rightPressed = true;
   } else if (e.keyCode == 37){
