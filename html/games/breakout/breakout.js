@@ -14,7 +14,6 @@ var ballRadius = 10;
 var ballSizeSlider = document.getElementById("ballSizeSlider");
 ballSizeSlider.oninput = function (){
   ballRadius = this.value;
-  ballSizeSlider.style = "::-webkit-slider-thumb {width = ballRadius*2, height = ballRadius*2}"
 }
 
 //builds paddle
@@ -39,12 +38,17 @@ var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 
+var rowSlider = document.getElementById("rowSlider");
+  rowSlider.oninput = function (){
+      brickRowCount = this.value;
+    }
+
 //creates brick array variables c and r represent columns and rows respectively
 var bricks = [];
-for(var c=0; c<brickColumnCount; c++){
-  bricks[c] = [];
-  for(var r=0; r<brickRowCount; r++){
-    bricks[c][r] = {x: 0, y: 0, status: 1};
+for(var r=0; r < 8; r++){
+  bricks[r] = [];
+  for(var c=0; c<brickColumnCount; c++){
+    bricks[r][c] = {x: 0, y: 0, status: 1};
   }
 }
 
@@ -69,13 +73,13 @@ function drawPaddle(){
 
 //function used to draw bricks to the canvas
 function drawBricks(){
-  for (c=0; c<brickColumnCount; c++){                                   //loop for drawing multiple bricks at once
-    for (r=0; r<brickRowCount; r++){
-      if (bricks[c][r].status == 1){
+  for (r=0; r<brickRowCount; r++){                                   //loop for drawing multiple bricks at once
+    for (c=0; c<brickColumnCount; c++){
+      if (bricks[r][c].status == 1){
         var brickX = (c*(brickWidth+brickPadding)) + brickOffsetLeft;   //as the loop adds to the c variable, multiplying it with brickWidth and brickPadding creates new bricks spaced apart
         var brickY = (r*(brickHeight+brickPadding)) + brickOffsetTop;
-        bricks[c][r].x = brickX;                                        //sets dimensions of each brick in the array to the current brickX and brickY values in the loop
-        bricks[c][r].y = brickY;
+        bricks[r][c].x = brickX;                                        //sets dimensions of each brick in the array to the current brickX and brickY values in the loop
+        bricks[r][c].y = brickY;
         ctx.beginPath();                                                //draws the brick
         ctx.rect(brickX,brickY, brickWidth, brickHeight);
         ctx.fillStyle = "#0095DD";
@@ -176,26 +180,6 @@ function keyUpHandler(e){
   }
 }
 
-//checks for ball hitting brick
-function collisionDetection(){
-  for (var c=0; c < brickColumnCount; c++){                       //loops used to check each brick for each frame
-    for (var r=0; r < brickRowCount; r++){
-      var b = bricks[c][r];
-      if(b.status == 1){                                          //makes sure status hasn't been changed to 0
-        if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight){ //checks if ball is inside brick
-          dy = -dy;
-          speedUp();
-          b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
-          score++;
-          if(score == brickRowCount * brickColumnCount){          //if score equals number of bricks, alerts a win
-            alert("YOU WIN!!! CONGRATULATIONS!");
-            document.location.reload();
-          }
-        }
-      }
-    }
-  }
-}
 
 function speedUp(){
   if (dx < 0 && dy < 0){
@@ -213,6 +197,26 @@ function speedUp(){
   }
 }
 
+//checks for ball hitting brick
+function collisionDetection(){
+  for (var r=0; r < brickRowCount; r++){                       //loops used to check each brick for each frame
+    for (var c=0; c < brickColumnCount; c++){
+      var b = bricks[r][c];
+      if(b.status == 1){                                          //makes sure status hasn't been changed to 0
+        if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight){ //checks if ball is inside brick
+          dy = -dy;
+          speedUp();
+          b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
+          score++;
+          if(score == brickRowCount * brickColumnCount){          //if score equals number of bricks, alerts a win
+            alert("YOU WIN!!! CONGRATULATIONS!");
+            document.location.reload();
+          }
+        }
+      }
+    }
+  }
+}
 
 function drawScore(){
   ctx.font = "16px Arial";
