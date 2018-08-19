@@ -21,6 +21,7 @@ var paddleHeight = 10;
 var paddleWidth = 80;
 var paddlePos = (canvas.width-paddleWidth)/2
 var paddleSpeed = 7;
+var paddleTouch = 0;
 
 //sets boolean values for arrow presses
 var rightPressed = false;
@@ -97,6 +98,7 @@ function draw(){
   drawBall();
   drawPaddle();
   drawScore();
+  drawPaddleTouch();
   collisionDetection();
   hideCursor();
   if (play){
@@ -114,6 +116,7 @@ function draw(){
         var paddleCenter = paddlePos + (paddleWidth/2);
         dx = (x - paddleCenter)/5;
         dy = -dy;
+        paddleTouch ++;
       } else {
       play = false;
       alert("GAME OVER");
@@ -222,6 +225,12 @@ function drawScore(){
   ctx.font = "16px Arial";
   ctx.fillStyle = "#0095DD";
   ctx.fillText("Score: "+ score, 8, 20);                         //tells fillText what to write, and where to write it
+}
+
+function drawPaddleTouch(){
+  ctx.font = "16px Arial";
+  ctx.fillyStyle = "#0095DD";
+  ctx.fillText("Paddle Touches: "+ paddleTouch, 330, 20);
 }
 
 function hideCursor (){
