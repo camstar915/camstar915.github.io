@@ -27,16 +27,26 @@
   color: blue;
 }
 
-.breakoutContainer {
-  padding-top: 50px;
-}
-
 *:focus {
   outline: none;
 }
 
-@media screen and (max-width: 800) {
+@media screen and (max-width: 900px) {
   .navLinks, .pageHeaders {
     width: 100%;
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+  }
+  .navLinks a {
+    float: none;
+    vertical-align: middle;
+    padding: 10px;
+  }
+  .slider {
+    margin-right: 15%;
+  }
+  #breakoutCanvas {
+    margin-left: 0%;
   }
 }
