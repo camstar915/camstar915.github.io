@@ -1,27 +1,42 @@
 @import url("libraries/hover.css");
 
-.topNav {
-  overflow: hidden;
-  margin: 5%;
-  color: black;
+* {
+  box-sizing: border-box;
 }
 
-.topNav a {
+.pageHeaders, .navLinks {
+  color: black;
+  width: 50%;
+  height: 180px;
+  float: left;
+  padding: 50px;
+  vertical-align: middle;
+}
+
+.navLinks a {
   text-decoration: none;
   float: right;
   color: black;
-  text-align: center;
-  padding: 2.5em .5em;
+  vertical-align: bottom;
+  padding-top: 3em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
-.topNav a:hover {
+.navLinks a:hover {
   color: blue;
 }
 
-.topNav h1 {
-  float: left;
+.breakoutContainer {
+  padding-top: 50px;
 }
 
 *:focus {
   outline: none;
+}
+
+@media screen and (max-width: 800) {
+  .navLinks, .pageHeaders {
+    width: 100%;
+  }
 }
