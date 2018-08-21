@@ -37,6 +37,21 @@
   color: blue;
 }
 
+.breakoutContainer {
+  width: 50%;
+  float: left;
+}
+
+.ballSizeSliderContainer, .rowSliderContainer {
+  float: right;
+  width: 50%;
+}
+
+#ballSizeSlider, #rowSlider {
+  float: left;
+  margin-left: 10%;
+}
+
 *:focus {
   outline: none;
 }
@@ -54,11 +69,21 @@
     vertical-align: middle;
     padding: 10px;
   }
-  .slider {
-    margin-right: 15%;
+
+  .breakoutContainer {
+    width: 100%;
   }
+
   #breakoutCanvas {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+
+  #ballSizeSlider, #rowSlider {
+    display: block;
+    float: none;
     margin-left: auto;
     margin-right: auto;
   }
