@@ -2,6 +2,16 @@
 <html lang = "en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124362808-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-124362808-1');
+</script>
+
   <title>Games</title>
   <meta charset = "utf-8">
   <meta name = "viewport" content = "width = device-width, initial-scale = .8">
@@ -11,10 +21,10 @@
 
 <body id = "gamesBody">
 
-  <div class = "pageHeaders">
-    <h1 id = "gamesPageHeader">These are the game<span id = "superPaddle">s</span></h1>
+  <div class = "headerContainer">
+    <h1 id = "gamesPageHeader">These are the game<span id = "superPaddle">s.</span></h1>
   </div>
-  <div class = "navLinks">
+  <div class = "navLinksContainer">
     <a class = "navButton hvr-bob" href = "../../index.html">Home</a>
     <a class = "navButton hvr-bob" href = "../sports/sports.html">Sports</a>
     <a class = "navButton hvr-bob" href = "../investing/investing.html">Investing</a>
@@ -23,8 +33,13 @@
 
   <div class = "breakoutContainer">
     <canvas id = "breakoutCanvas" width ="480" height="320"></canvas>
-    <input type = "range" min = "2" max = "25" value = "10" class = "slider" id = "ballSizeSlider">
-    <input type = "range" min = "1" max = "8" value = "3" class = "slider" id = "rowSlider">
+  </div>
+
+  <div class = "ballSizeSliderContainer">
+    <input id = "ballSizeSlider" class = "slider" type = "range" min = "2" max = "25" value = "10">
+  </div>
+  <div class = "rowSliderContainer">
+    <input id = "rowSlider" class = "slider" type = "range" min = "1" max = "8" value = "3">
   </div>
 
   <script src="breakout/breakout.js"></script>

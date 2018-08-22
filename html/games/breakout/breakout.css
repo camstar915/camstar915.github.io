@@ -1,9 +1,8 @@
 #breakoutCanvas {
-  float: left;
   padding: 0;
   background: #eee;
   display: block;
-  margin-left: 25%;
+  float: right;
 }
 
 .slider {

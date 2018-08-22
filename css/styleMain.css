@@ -4,49 +4,87 @@
   box-sizing: border-box;
 }
 
-.pageHeaders, .navLinks {
+.headerContainer, .navLinksContainer {
   color: black;
   width: 50%;
   height: 180px;
   float: left;
   padding: 50px;
-  vertical-align: middle;
+  position: relative;
 }
 
-.navLinks a {
+.headerContainer {
+  padding-right: 0px;
+}
+
+.navLinksContainer {
+  padding-left: 20%;
+  padding-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navLinksContainer a {
   text-decoration: none;
   float: right;
   color: black;
-  vertical-align: bottom;
-  padding-top: 3em;
-  padding-left: 2em;
-  padding-right: 2em;
+  flex: .5;
+  text-align: center;
+  height: 50px;
 }
 
-.navLinks a:hover {
+.navLinksContainer a:hover {
   color: blue;
+}
+
+.breakoutContainer {
+  width: 50%;
+  float: left;
+}
+
+.ballSizeSliderContainer, .rowSliderContainer {
+  float: right;
+  width: 50%;
+}
+
+#ballSizeSlider, #rowSlider {
+  float: left;
+  margin-left: 10%;
 }
 
 *:focus {
   outline: none;
 }
 
-@media screen and (max-width: 900px) {
-  .navLinks, .pageHeaders {
+@media screen and (max-width: 1000px) {
+  .navLinksContainer, .headerContainer {
     width: 100%;
     margin: auto;
     text-align: center;
     padding: 20px;
+    height: auto;
   }
-  .navLinks a {
+  .navLinksContainer a {
     float: none;
     vertical-align: middle;
     padding: 10px;
   }
-  .slider {
-    margin-right: 15%;
+
+  .breakoutContainer {
+    width: 100%;
   }
+
   #breakoutCanvas {
-    margin-left: 0%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+  }
+
+  #ballSizeSlider, #rowSlider {
+    display: block;
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
