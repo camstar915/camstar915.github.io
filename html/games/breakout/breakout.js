@@ -5,6 +5,8 @@ var ctx = canvas.getContext("2d");                //gets reference to 2d context
 var x = canvas.width/2;
 var y = canvas.height-30;
 
+var colorScheme = "#BF9926"
+
 //set direction of ball axis
 var dx = 2;
 var dy = -2;
@@ -64,7 +66,7 @@ var score = 0;
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x,y,ballRadius,0, Math.PI*2);           //draws circle
-  ctx.fillStyle = "#0095DD";                      //sets ball color
+  ctx.fillStyle = colorScheme;                      //sets ball color
   ctx.fill();                                     //fills color into ball
   ctx.closePath();
 };
@@ -73,7 +75,7 @@ function drawBall() {
 function drawPaddle(){
   ctx.beginPath();
   ctx.rect(paddlePos, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = colorScheme;
   ctx.fill();
   ctx.closePath();
 };
@@ -89,7 +91,7 @@ function drawBricks(){
         bricks[r][c].y = brickY;
         ctx.beginPath();                                                //draws the brick
         ctx.rect(brickX,brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#0095DD";
+        ctx.fillStyle = colorScheme;
         ctx.fill();
         ctx.closePath;
       }
@@ -232,14 +234,14 @@ function collisionDetection(){
 //draws score in top left corner
 function drawScore(){
   ctx.font = "16px Arial";
-  ctx.fillStyle = "#0095DD";
+  ctx.fillStyle = colorScheme;
   ctx.fillText("Score: "+ score, 8, 20);                         //tells fillText what to write, and where to write it
 }
 
 //draws paddleTouch value in top right corner
 function drawPaddleTouch(){
   ctx.font = "16px Arial";
-  ctx.fillyStyle = "#0095DD";
+  ctx.fillyStyle = colorScheme;
   ctx.fillText("Paddle Touches: "+ paddleTouch, 330, 20);
 }
 

@@ -6,11 +6,24 @@
 
 .headerContainer, .navLinksContainer {
   color: black;
-  width: 50%;
+  width: 40%;
   height: 180px;
   float: left;
   padding: 50px;
   position: relative;
+}
+
+.logoContainer {
+  width: 20%;
+  height: 180px;
+  float: left;
+  padding: 50px;
+  padding-top: 10px;
+}
+
+.logoContainer img {
+  width: 100%;
+  height: auto;
 }
 
 .headerContainer {
@@ -18,7 +31,7 @@
 }
 
 .navLinksContainer {
-  padding-left: 20%;
+  padding-left: 10%;
   padding-bottom: 20px;
   display: flex;
   align-items: center;
@@ -34,17 +47,20 @@
 }
 
 .navLinksContainer a:hover {
-  color: blue;
+  color: #26BBBF;
 }
 
 .breakoutContainer {
   width: 50%;
   float: left;
+  padding-top: 100px;
+
 }
 
 .ballSizeSliderContainer, .rowSliderContainer {
   float: right;
   width: 50%;
+  padding-top: 100px;
 }
 
 #ballSizeSlider, #rowSlider {
@@ -57,12 +73,16 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .navLinksContainer, .headerContainer {
+  .navLinksContainer, .headerContainer, .logoContainer {
     width: 100%;
     margin: auto;
     text-align: center;
     padding: 20px;
     height: auto;
+  }
+
+  .logoContainer img {
+    width: 20%;
   }
   .navLinksContainer a {
     float: none;
@@ -72,6 +92,7 @@
 
   .breakoutContainer {
     width: 100%;
+    padding-top: 0px;
   }
 
   #breakoutCanvas {
