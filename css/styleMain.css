@@ -47,17 +47,20 @@
 }
 
 .navLinksContainer a:hover {
-  color: blue;
+  color: #26BBBF;
 }
 
 .breakoutContainer {
   width: 50%;
   float: left;
+  padding-top: 100px;
+
 }
 
 .ballSizeSliderContainer, .rowSliderContainer {
   float: right;
   width: 50%;
+  padding-top: 100px;
 }
 
 #ballSizeSlider, #rowSlider {
@@ -89,6 +92,7 @@
 
   .breakoutContainer {
     width: 100%;
+    padding-top: 0px;
   }
 
   #breakoutCanvas {
