@@ -5,7 +5,7 @@ var ctx = canvas.getContext("2d");                //gets reference to 2d context
 var x = canvas.width/2;
 var y = canvas.height-30;
 
-var colorScheme = "#BF9926"
+var colorScheme = "#26BBBF"
 
 //set direction of ball axis
 var dx = 2;

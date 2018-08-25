@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/*Top of page including HEADER, NAV LINKS, AND LOGO*/
 .headerContainer, .navLinksContainer {
   color: black;
   width: 40%;
@@ -44,14 +45,32 @@
   flex: .5;
   text-align: center;
   height: 50px;
+  font-size: 17px;
 }
 
 .navLinksContainer a:hover {
   color: #26BBBF;
 }
 
+/*Welcome Banner*/
+.welcomeBanner {
+  float: left;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-color: #26BBBF;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.welcomeBanner h2 {
+  color: white;
+  font-size: 6vw;
+}
+
+/* Breakout game CONTAINER and SLIDER containers and objects*/
 .breakoutContainer {
-  width: 50%;
+  width: 60%;
   float: left;
   padding-top: 100px;
 
@@ -59,7 +78,7 @@
 
 .ballSizeSliderContainer, .rowSliderContainer {
   float: right;
-  width: 50%;
+  width: 40%;
   padding-top: 100px;
 }
 
@@ -68,6 +87,7 @@
   margin-left: 10%;
 }
 
+/*Removes outline when object is clicked on*/
 *:focus {
   outline: none;
 }
