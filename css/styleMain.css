@@ -81,6 +81,10 @@
 
 .pageBanner h2 {
   color: white;
+  font-size: 2vw;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 /* Breakout game CONTAINER and SLIDER containers and objects*/
