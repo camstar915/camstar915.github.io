@@ -164,10 +164,22 @@ function touchHandler (e){
   var relativeX = e.touches[0].clientX - canvas.offsetLeft;
   var relativeY = e.touches[0].clientY - canvas.offsetTop;
   if (relativeX > 0 && relativeX < canvas.width && relativeY > 0){
+    //prevents vertical scolling when over or below the game canvas
+    var body = document.getElementById("gamesBody");
+    var html = document.getElementById("gamesHTML");
+    body.style.overflowY = "hidden";
+    body.style.position = "relative";
+    html.style.overflowY = "hidden";
     play = true;
     paddlePos = relativeX - paddleWidth/2;
   } else {
     play = false;
+    //allows vertical scrolling when user moves finger off game canvas or below
+    var body = document.getElementById("gamesBody");
+    var html = document.getElementById("gamesHTML");
+    body.style.overflowY = "auto";
+    body.style.position = "static";
+    html.style.overflowY = "auto";
   }
 }
 
