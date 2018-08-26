@@ -22,14 +22,14 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #BF9926;
+  background: #26BBBF;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: #BF9926;
+  background: #26BBBF;
   border-radius: 50%;
   cursor: pointer;
 }
