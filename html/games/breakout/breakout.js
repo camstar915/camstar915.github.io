@@ -5,6 +5,10 @@ var ctx = canvas.getContext("2d");                //gets reference to 2d context
 var x = canvas.width/2;
 var y = canvas.height-30;
 
+if (screen.width < 500){
+  canvas.width = screen.width;
+}
+
 var colorScheme = "#26BBBF"
 
 //set direction of ball axis
@@ -40,11 +44,11 @@ var play = false;
 //sets up stuff for the bricks
 var brickRowCount = 3;
 var brickColumnCount = 5;
-var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
 var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
+var brickWidth = (canvas.width-(brickOffsetLeft*2)-(brickPadding*(brickColumnCount-1)))/brickColumnCount;
 
 var rowSlider = document.getElementById("rowSlider");
   rowSlider.oninput = function (){
@@ -254,7 +258,11 @@ function drawScore(){
 function drawPaddleTouch(){
   ctx.font = "16px Arial";
   ctx.fillyStyle = colorScheme;
-  ctx.fillText("Paddle Touches: "+ paddleTouch, 330, 20);
+  if (paddleTouch < 10){
+  ctx.fillText("Paddle Touches: "+ paddleTouch, canvas.width - 140, 20);
+  } else {
+  ctx.fillText("Paddle Touches: "+ paddleTouch, canvas.width - 150, 20);
+  }
 }
 
 //hides cursor when over canvas
