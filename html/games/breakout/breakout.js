@@ -6,7 +6,7 @@ var x = canvas.width/2;
 var y = canvas.height-30;
 
 if (screen.width < 500){
-  canvas.width = screen.width;
+  canvas.width = screen.width - 20;
 }
 
 var colorScheme = "#26BBBF"
