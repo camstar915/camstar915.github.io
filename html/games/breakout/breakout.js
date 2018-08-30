@@ -123,10 +123,10 @@ function draw(){
 
     if(y < ballRadius){    //changes ball direction if hits tops
       dy = -dy;
-    } else if( y > canvas.height-ballRadius){                  //checks if ball hits bottom
+    } else if( y > canvas.height-ballRadius-(paddleHeight/5)){                  //checks if ball hits bottom
       if (x > paddlePos - ballRadius && x < paddlePos + paddleWidth + ballRadius) {
         var paddleCenter = paddlePos + (paddleWidth/2);
-        dx = (x - paddleCenter)/5;
+        dx = (x - paddleCenter)/10;
         dy = -dy;
         paddleTouch ++;
       } else {
