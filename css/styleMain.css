@@ -87,6 +87,44 @@
   margin-right: 10%;
 }
 
+/*Sports article styles*/
+.articleContainer {
+  float: left;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 80%;
+  margin-top: 50px;
+}
+
+.leftArticleContainer, .middleArticleContainer, .rightArticleContainer{
+  height: 400px;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #26BBBF;
+  border-width: 5px;
+}
+
+.leftArticleContainer:hover, .middleArticleContainer:hover, .rightArticleContainer:hover {
+  background-color: #eee;
+}
+
+.leftArticleContainer {
+  width: 30%;
+  float: left;
+}
+
+.middleArticleContainer {
+  width: 30%;
+  float: left;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.rightArticleContainer {
+  width: 30%;
+  float: left;
+}
+
 /* Breakout game CONTAINER and SLIDER containers and objects*/
 .breakoutContainer {
   width: 60%;
@@ -150,5 +188,11 @@
 
   .pageBanner h2 {
     font-size: 4vw;
+  }
+
+  .leftArticleContainer, .rightArticleContainer, .middleArticleContainer {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 20px;
   }
 }
