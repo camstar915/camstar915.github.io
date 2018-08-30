@@ -30,7 +30,7 @@ var paddleSpeed = 7;
 var paddleTouch = 0;
 var superPaddle = document.getElementById("superPaddle")
 superPaddle.onclick = function(){
-  paddleWidth = 450;
+  paddleWidth = canvas.width - 20;
   paddlePos = (canvas.width-paddleWidth)/2;
 }
 
