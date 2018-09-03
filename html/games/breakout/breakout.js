@@ -130,6 +130,7 @@ function draw(){
         dy = -dy;
         paddleTouch ++;
       } else if (y > canvas.height){
+      cancelAnimationFrame(draw);
       play = false;
       alert("GAME OVER");
       document.location.reload();
