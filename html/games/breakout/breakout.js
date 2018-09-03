@@ -169,8 +169,8 @@ function touchHandler (e){
   var relativeY = e.touches[0].clientY - canvas.offsetTop;
   if (relativeX > 0 && relativeX < canvas.width && relativeY > 0){
     //prevents vertical scolling when over or below the game canvas
-    var body = document.getElementById("gamesBody");
-    var html = document.getElementById("gamesHTML");
+    var body = document.getElementById("breakoutBody");
+    var html = document.getElementById("breakoutHTML");
     body.style.overflowY = "hidden";
     body.style.position = "relative";
     html.style.overflowY = "hidden";
@@ -179,8 +179,8 @@ function touchHandler (e){
   } else {
     play = false;
     //allows vertical scrolling when user moves finger off game canvas or below
-    var body = document.getElementById("gamesBody");
-    var html = document.getElementById("gamesHTML");
+    var body = document.getElementById("breakoutBody");
+    var html = document.getElementById("breakoutHTML");
     body.style.overflowY = "auto";
     body.style.position = "static";
     html.style.overflowY = "auto";
