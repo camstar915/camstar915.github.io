@@ -38,18 +38,15 @@
     <h2 class = "pageBanner">Javascript games</h2>
   </div>
 
-  <div class = "breakoutContainer">
-    <canvas id = "breakoutCanvas" width ="480" height="320"></canvas>
+  <div class = "cardContainer">
+    <div class = "leftCardContainer">
+    </div>
+    <div class = "middleCardContainer" onclick = "location.href='breakout/breakout.html';">
+      <img id = "breakoutPreview" src = "../../images/breakoutPreview.png">
+    </div>
+    <div class = "rightCardContainer">
+    </div>
   </div>
-
-  <div class = "ballSizeSliderContainer">
-    <input id = "ballSizeSlider" class = "slider" type = "range" min = "2" max = "25" value = "10">
-  </div>
-  <div class = "rowSliderContainer">
-    <input id = "rowSlider" class = "slider" type = "range" min = "1" max = "8" value = "3">
-  </div>
-
-  <script src="breakout/breakout.js"></script>
 
 </body>
 </html>

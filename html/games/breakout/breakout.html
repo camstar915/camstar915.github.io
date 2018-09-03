@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = "en" id = "gamesHTML">
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124362808-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-124362808-1');
+</script>
+
+  <title>Breakout</title>
+  <meta charset = "utf-8">
+  <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+  <link rel="stylesheet" href="breakout.css">
+  <link rel="stylesheet" href="../../../css/styleMain.css">
+</head>
+
+
+<body id = "breakoutBody">
+
+  <header class = "headerContainer">
+    <h1 id = "gamesPageHeader">This is <span id = "superPaddle">Breakout</span></h1>
+  </header>
+  <div class = "logoContainer">
+    <img src = "../../../logo/csTransparant.png">
+  </div>
+  <nav class = "navLinksContainer">
+    <a class = "navButton hvr-bob" href = "../../../index.html">Home</a>
+    <a class = "navButton hvr-bob" href = "../../sports/sports.html">Sports</a>
+    <a class = "navButton hvr-bob" href = "../../investing/investing.html">Investing</a>
+    <a class = "active navButton hvr-bob" href = "../games.html">Games</a>
+  </nav>
+
+  <div class = "pageBanner">
+    <h2 class = "pageBanner">Breakout</h2>
+  </div>
+
+  <div class = "breakoutContainer">
+    <canvas id = "breakoutCanvas" width ="480" height="320"></canvas>
+  </div>
+
+  <div class = "ballSizeSliderContainer">
+    <input id = "ballSizeSlider" class = "slider" type = "range" min = "2" max = "25" value = "10">
+  </div>
+  <div class = "rowSliderContainer">
+    <input id = "rowSlider" class = "slider" type = "range" min = "1" max = "8" value = "3">
+  </div>
+
+  <script src="breakout.js"></script>
+
+</body>
+</html>
