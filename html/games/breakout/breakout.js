@@ -167,7 +167,7 @@ function mouseMoveHandler(e){
 function touchHandler (e){
   var relativeX = e.touches[0].clientX - canvas.offsetLeft;
   var relativeY = e.touches[0].clientY - canvas.offsetTop;
-  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0){
+  if (relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){
     //prevents vertical scolling when over or below the game canvas
     var body = document.getElementById("breakoutBody");
     var html = document.getElementById("breakoutHTML");
