@@ -129,7 +129,7 @@ function draw(){
         dx = (x - paddleCenter)/10;
         dy = -dy;
         paddleTouch ++;
-      } else {
+      } else if (y > canvas.height){
       play = false;
       alert("GAME OVER");
       document.location.reload();
