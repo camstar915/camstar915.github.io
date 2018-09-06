@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang = "en" id = "breakoutHTML">
+<html lang = "en" id = "minesweeperHTML">
 
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -12,9 +12,37 @@
   gtag('config', 'UA-124362808-1');
 </script>
 
-  <title>Breakout</title>
+  <title>Minesweeper</title>
   <meta charset = "utf-8">
   <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-  <link rel="stylesheet" href="breakout.css">
   <link rel="stylesheet" href="../../../css/styleMain.css">
 </head>
+
+
+<body id = "minesweeperBody">
+
+  <header class = "headerContainer">
+    <h1 id = "gamesPageHeader">This is Minesweeper</h1>
+  </header>
+  <div class = "logoContainer">
+    <img src = "../../../logo/csTransparant.png">
+  </div>
+  <nav class = "navLinksContainer">
+    <a class = "navButton hvr-bob" href = "../../../index.html">Home</a>
+    <a class = "navButton hvr-bob" href = "../../sports/sports.html">Sports</a>
+    <a class = "navButton hvr-bob" href = "../../investing/investing.html">Investing</a>
+    <a class = "active navButton hvr-bob" href = "../games.html">Games</a>
+  </nav>
+
+  <div class = "pageBanner">
+    <h2 class = "pageBanner">Minesweeper</h2>
+  </div>
+
+  <div class = "minesweeperContainer">
+    <canvas id = "minesweeperCanvas" oncontextmenu="return false"></canvas>
+  </div>
+
+  <script src = "minesweeper.js"></script>
+
+</body>
+</html>
