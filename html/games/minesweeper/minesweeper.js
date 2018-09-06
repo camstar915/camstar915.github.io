@@ -1,7 +1,7 @@
 var canvas = document.getElementById("minesweeperCanvas");
 var ctx = canvas.getContext("2d");
 
-var squareSize = 70;
+var squareSize = 50;
 var squareHeight = squareSize;
 var squareWidth = squareSize;
 var squareRows = 10;
@@ -183,9 +183,9 @@ function checkForBombs (r,c){
 
 function drawNear(r,c){
   var box = sq[r][c];
-  ctx.font = "15px Arial";
+  ctx.font = (squareSize/2)+"px Arial";
   ctx.fillStyle = "#727777";
-  ctx.fillText(box.bombsNear, box.x+(squareSize/2), box.y+(squareSize/2))
+  ctx.fillText(box.bombsNear, box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
 }
 
 function drawSquares() {
