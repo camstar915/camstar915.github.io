@@ -1,5 +1,8 @@
 var canvas = document.getElementById("minesweeperCanvas");
 var ctx = canvas.getContext("2d");
+var newGameButton = document.getElementById("newGameButton");
+
+newGameButton.style.visibility = "hidden";
 
 var squareSize = 50;
 var squareHeight = squareSize;
@@ -11,6 +14,7 @@ var colorCovered = "white";
 var colorUncovered = "#26BBBF";
 var colorMarked = "#727777"
 var bombNumber = 20;
+var numberShown = 0;
 
 //build square array
 var sq = [];
@@ -188,6 +192,13 @@ function drawNear(r,c){
   ctx.fillText(box.bombsNear, box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
 }
 
+function drawBomb (r,c){
+  var box = sq[r][c];
+  ctx.font = (squareSize/2)+"px Arial";
+  ctx.fillStyle = "#727777";
+  ctx.fillText(box.bombsNear, box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
+}
+
 function drawSquares() {
   for (r=0; r<squareRows; r++){
     for (c=0; c<squareColumns; c++){
@@ -226,10 +237,17 @@ function clickHandler(e){
       if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
         if (event.which == 1){
           if (sq[r][c].isBomb){
-            alert("You blew up")
-            document.location.reload();
-          } else {
+            sq[r][c].bombsNear = "B";
+            drawBomb(r,c);
+            alert("You blew up");
+            newGameButton.style.visibility = "visible";
+          } else if (sq[r][c].isShown == false){
             sq[r][c].isShown = true;
+            numberShown++;
+            if (numberShown >= (squareRows*squareColumns)-bombNumber){
+              alert("You survived!");
+              newGameButton.style.visibility = "visible";
+            }
             checkForBombs(r,c);
             drawSquares();
           }
@@ -245,6 +263,20 @@ function clickHandler(e){
       }
     }
   }
+}
+
+function newGame(){
+  newGameButton.style.visibility = "hidden";
+  for (r=0; r<squareRows; r++){
+    for (c=0; c<squareColumns; c++){
+      sq[r][c].isShown = false;
+      sq[r][c].isBomb = false;
+      sq[r][c].isMarked = false;
+      sq[r][c].bombsNear = 0;
+    }
+    numberShown = 0;
+  }
+  drawGame();
 }
 
 drawGame();

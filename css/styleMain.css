@@ -161,7 +161,7 @@
 .minesweeperContainer {
   width: 100%;
   float: left;
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 #minesweeperCanvas {
@@ -171,6 +171,28 @@
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 100px;
+}
+
+.newGameContainer {
+  width: 100%;
+  float: left;
+}
+
+.newGameButton {
+  width: 20%;
+  padding: 0;
+  display: block;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-radius: 20px;
+  border-color: #26BBBF;
+  background-color: white;
+  color: #26BBBF;
+  font-size: 2vw;
+  padding: 10px;
+  border-width: 2px;
 }
 
 /*Removes outline when object is clicked on*/
