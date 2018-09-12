@@ -236,9 +236,16 @@ function drawSquares() {
 function drawGame(){
   drawSquares();
   placeBombs();
+  enableClick();
 }
 
+function enableClick(){
 canvas.addEventListener("mouseup", clickHandler, false);
+}
+
+function disableClick(){
+  canvas.removeEventListener("mouseup", clickHandler, false);
+}
 
 function clickHandler(e){
   var relativeX = e.pageX - canvas.offsetLeft;
@@ -249,14 +256,15 @@ function clickHandler(e){
         if (event.which == 1){
           if (sq[r][c].isBomb){
             showBombs();
-            alert("You blew up");
+            disableClick();
             newGameButton.style.visibility = "visible";
           } else if (sq[r][c].isShown == false){
             sq[r][c].isShown = true;
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
+              drawSquares();
               showBombs();
-              alert("You survived!");
+              disableClick();
               newGameButton.style.visibility = "visible";
             }
             checkForBombs(r,c);
