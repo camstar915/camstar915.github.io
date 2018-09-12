@@ -47,6 +47,7 @@ function placeBombs(){
       b--;
     } else {
       sq[y][z].isBomb = true;
+      sq[y][z].bombsNear = "B";
     }
   }
 }
@@ -195,8 +196,18 @@ function drawNear(r,c){
 function drawBomb (r,c){
   var box = sq[r][c];
   ctx.font = (squareSize/2)+"px Arial";
-  ctx.fillStyle = "#727777";
+  ctx.fillStyle = "#26BBBF";
   ctx.fillText(box.bombsNear, box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
+}
+
+function showBombs(){
+  for (r=0; r<squareRows; r++){
+    for (c=0; c<squareColumns; c++){
+      if (sq[r][c].isBomb){
+        drawBomb(r,c);
+      }
+    }
+  }
 }
 
 function drawSquares() {
@@ -237,14 +248,14 @@ function clickHandler(e){
       if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
         if (event.which == 1){
           if (sq[r][c].isBomb){
-            sq[r][c].bombsNear = "B";
-            drawBomb(r,c);
+            showBombs();
             alert("You blew up");
             newGameButton.style.visibility = "visible";
           } else if (sq[r][c].isShown == false){
             sq[r][c].isShown = true;
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
+              showBombs();
               alert("You survived!");
               newGameButton.style.visibility = "visible";
             }
