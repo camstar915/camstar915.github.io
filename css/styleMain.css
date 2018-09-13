@@ -104,6 +104,7 @@
   border-radius: 20px;
   border-color: #26BBBF;
   border-width: 5px;
+  margin-bottom: 50px;
 }
 
 .leftCardContainer:hover,
@@ -115,6 +116,8 @@
 .leftCardContainer {
   width: 30%;
   float: left;
+  align-items: center;
+  display: flex;
 }
 
 .middleCardContainer {
@@ -131,7 +134,7 @@
   float: left;
 }
 
-#breakoutPreview {
+.gamePreview {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -244,6 +247,8 @@
   .leftCardContainer,
   .rightCardContainer,
   .middleCardContainer {
+    float: left;
+    margin: 0;
     width: 100%;
     height: 400px;
     margin-bottom: 20px;
