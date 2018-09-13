@@ -35,6 +35,13 @@ for (var r=0; r<squareRows; r++){
 canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
 canvas.height = squareHeight*squareRows + squareRows*squarePadding + squarePadding;
 
+if (screen.width<canvas.width){
+  while (screen.width<canvas.width){
+    squareColumns--;
+    squareRows++;
+  }
+}
+
 function randNum(min, max){
   return Math.floor(Math.random()*(max-min+1))+min;
 }
