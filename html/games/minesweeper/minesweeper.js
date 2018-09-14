@@ -250,8 +250,10 @@ function drawSquares() {
 
 function setMarked(r,c){
   if (sq[r][c].isMarked == true){
+    disableClick();
     sq[r][c].isMarked = false;
     drawSquares();
+    setTimeout(enableClick, 100)
   } else {
     sq[r][c].isMarked = true;
     drawSquares();
