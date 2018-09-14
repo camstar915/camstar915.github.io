@@ -16,6 +16,24 @@ var colorMarked = "#727777"
 var bombNumber = 20;
 var numberShown = 0;
 
+var longPressDelay = 500;
+
+function hello(){
+  console.log("hello");
+}
+
+canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
+canvas.height = squareHeight*squareRows + squareRows*squarePadding + squarePadding;
+
+if (screen.width<canvas.width){
+  var nSquares = squareRows*squareColumns;
+  var newWidth = Math.floor((screen.width/squareWidth)-1);
+  squareColumns = newWidth;
+  squareRows = Math.floor(nSquares/newWidth);
+  canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
+  canvas.height = squareHeight*squareRows + squareRows*squarePadding + squarePadding;
+}
+
 //build square array
 var sq = [];
 for (var r=0; r<squareRows; r++){
@@ -29,16 +47,6 @@ for (var r=0; r<squareRows; r++){
       isBomb:false,
       bombsNear:0
     }
-  }
-}
-
-canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
-canvas.height = squareHeight*squareRows + squareRows*squarePadding + squarePadding;
-
-if (screen.width<canvas.width){
-  while (screen.width<canvas.width){
-    squareColumns--;
-    squareRows++;
   }
 }
 
@@ -240,6 +248,16 @@ function drawSquares() {
   }
 }
 
+function setMarked(r,c){
+  if (sq[r][c].isMarked == true){
+    sq[r][c].isMarked = false;
+    drawSquares();
+  } else {
+    sq[r][c].isMarked = true;
+    drawSquares();
+  }
+}
+
 function drawGame(){
   drawSquares();
   placeBombs();
@@ -248,10 +266,31 @@ function drawGame(){
 
 function enableClick(){
 canvas.addEventListener("mouseup", clickHandler, false);
+canvas.addEventListener("touchstart", touchHandler, false);
 }
 
 function disableClick(){
   canvas.removeEventListener("mouseup", clickHandler, false);
+  canvas.removeEventListener("touchstart", touchHandler, false);
+}
+
+function touchHandler(e){
+  canvas.addEventListener("touchend", touchEndHandler, false);
+  var timer = 0;
+  var relativeX = e.touches[0].pageX - canvas.offsetLeft;
+  var relativeY = e.touches[0].pageY - canvas.offsetTop;
+  for (r=0; r<squareRows; r++){
+    for  (c=0; c<squareColumns; c++){
+      if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
+        timer = setTimeout(setMarked.bind(null,r,c), longPressDelay);
+      }
+    }
+  }
+  function touchEndHandler(){
+    if (timer){
+      clearTimeout(timer);
+    }
+  }
 }
 
 function clickHandler(e){
@@ -262,10 +301,16 @@ function clickHandler(e){
       if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
         if (event.which == 1){
           if (sq[r][c].isBomb){
+              if (sq[r][c].isMarked == true){
+                return;
+              }
             showBombs();
             disableClick();
             newGameButton.style.visibility = "visible";
           } else if (sq[r][c].isShown == false){
+              if (sq[r][c].isMarked == true){
+                return
+              }
             sq[r][c].isShown = true;
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
@@ -278,13 +323,7 @@ function clickHandler(e){
             drawSquares();
           }
         } else if (event.which == 3){
-          if (sq[r][c].isMarked == true){
-            sq[r][c].isMarked = false;
-            drawSquares();
-          } else {
-            sq[r][c].isMarked = true;
-            drawSquares();
-          }
+          setMarked(r,c);
         }
       }
     }
