@@ -164,7 +164,6 @@
 .minesweeperContainer {
   width: 100%;
   float: left;
-  padding-top: 50px;
 }
 
 #minesweeperCanvas {
@@ -179,6 +178,17 @@
 .newGameContainer {
   width: 100%;
   float: left;
+}
+
+.timeContainer {
+  float: left;
+  width: 100%;
+  text-align: center;
+  color: #26BBBF;
+}
+
+.timeContainer h2 {
+  padding: 0;
 }
 
 .newGameButton {
