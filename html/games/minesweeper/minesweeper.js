@@ -1,6 +1,8 @@
 var canvas = document.getElementById("minesweeperCanvas");
 var ctx = canvas.getContext("2d");
 var newGameButton = document.getElementById("newGameButton");
+var scoreboard = document.getElementById("scoreboardMS");
+var scoreText = document.getElementsByClassName("score");
 
 newGameButton.style.visibility = "hidden";
 
@@ -15,11 +17,41 @@ var colorUncovered = "#26BBBF";
 var colorMarked = "#727777"
 var bombNumber = 20;
 var numberShown = 0;
+var numberMarked = 0;
+var timeCount = 0;
 
 var longPressDelay = 500;
 
 function hello(){
   console.log("hello");
+}
+
+document.getElementById("scoreboardMS").style.fontSize = scoreboardMS.height + "px";
+
+function printBombs(){
+  document.getElementById("printBombs").innerHTML = "Bombs: " + bombNumber;
+}
+
+function printMarked(){
+  document.getElementById("printMarked").innerHTML = "Marked: " + numberMarked;
+}
+
+var time = setInterval(runTime, 1000);
+
+function printTime(){
+  document.getElementById("printTime").innerHTML = "Time: " + timeCount;
+}
+
+var timeGo = false;
+function runTime(){
+  if (timeGo){
+    timeCount++;
+    printTime();
+  }
+}
+
+function stopTime(){
+  clearInterval(time);
 }
 
 canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
@@ -33,6 +65,9 @@ if (screen.width<canvas.width){
   canvas.width = squareWidth*squareColumns + squareColumns*squarePadding + squarePadding;
   canvas.height = squareHeight*squareRows + squareRows*squarePadding + squarePadding;
 }
+
+var canvasWidth = canvas.width;
+scoreboard.style.width = canvasWidth+squarePadding + "px";
 
 //build square array
 var sq = [];
@@ -246,16 +281,19 @@ function drawSquares() {
       }
     }
   }
+  printMarked();
 }
 
 function setMarked(r,c){
   if (sq[r][c].isMarked == true){
     disableClick();
     sq[r][c].isMarked = false;
+    numberMarked--;
     drawSquares();
     setTimeout(enableClick, 100)
   } else {
     sq[r][c].isMarked = true;
+    numberMarked++;
     drawSquares();
   }
 }
@@ -263,7 +301,9 @@ function setMarked(r,c){
 function drawGame(){
   drawSquares();
   placeBombs();
+  printBombs();
   enableClick();
+  printTime();
 }
 
 function enableClick(){
@@ -296,6 +336,7 @@ function touchHandler(e){
 }
 
 function clickHandler(e){
+  timeGo = true;
   var relativeX = e.pageX - canvas.offsetLeft;
   var relativeY = e.pageY - canvas.offsetTop;
   for (r=0; r<squareRows; r++){
@@ -306,6 +347,7 @@ function clickHandler(e){
               if (sq[r][c].isMarked == true){
                 return;
               }
+            timeGo = false;
             showBombs();
             disableClick();
             newGameButton.style.visibility = "visible";
@@ -316,6 +358,8 @@ function clickHandler(e){
             sq[r][c].isShown = true;
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
+              timeGo = false;
+              checkForBombs(r,c);
               drawSquares();
               showBombs();
               disableClick();
@@ -342,6 +386,8 @@ function newGame(){
       sq[r][c].bombsNear = 0;
     }
     numberShown = 0;
+    numberMarked = 0;
+    timeCount = 0;
   }
   drawGame();
 }
