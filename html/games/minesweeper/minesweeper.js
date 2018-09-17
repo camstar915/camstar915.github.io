@@ -3,6 +3,7 @@ var ctx = canvas.getContext("2d");
 var newGameButton = document.getElementById("newGameButton");
 var scoreboard = document.getElementById("scoreboardMS");
 var scoreText = document.getElementsByClassName("score");
+document.cookie = "bestTime=1000; expires=Sun, 15 Sept 2020 00:00:00 UTC";
 
 newGameButton.style.visibility = "hidden";
 
@@ -19,7 +20,6 @@ var bombNumber = 20;
 var numberShown = 0;
 var numberMarked = 0;
 var timeCount = 0;
-
 var longPressDelay = 500;
 
 function hello(){
@@ -28,9 +28,8 @@ function hello(){
 
 document.getElementById("scoreboardMS").style.fontSize = scoreboardMS.height + "px";
 
-var bestTimeCookie = document.cookie;
 function printBestTime(){
-  document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
+  document.getElementById("bestTime").innerHTML = "Cookie: " + getCookie(bestTime);
 }
 
 function printBombs(){
@@ -45,6 +44,12 @@ var time = setInterval(runTime, 1000);
 
 function printTime(){
   document.getElementById("printTime").innerHTML = "Time: " + timeCount;
+}
+
+function getCookie(name){
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
 var timeGo = false;
@@ -365,7 +370,11 @@ function clickHandler(e){
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
               timeGo = false;
-              document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
+              if (getCookie(bestTime)<timeCount){
+                return;
+              } else {
+                document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
+              }
               checkForBombs(r,c);
               drawSquares();
               showBombs();
