@@ -28,6 +28,11 @@ function hello(){
 
 document.getElementById("scoreboardMS").style.fontSize = scoreboardMS.height + "px";
 
+var bestTimeCookie = document.cookie;
+function printBestTime(){
+  document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
+}
+
 function printBombs(){
   document.getElementById("printBombs").innerHTML = "Bombs: " + bombNumber;
 }
@@ -299,6 +304,7 @@ function setMarked(r,c){
 }
 
 function drawGame(){
+  printBestTime();
   drawSquares();
   placeBombs();
   printBombs();
@@ -359,6 +365,7 @@ function clickHandler(e){
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
               timeGo = false;
+              document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
               checkForBombs(r,c);
               drawSquares();
               showBombs();
