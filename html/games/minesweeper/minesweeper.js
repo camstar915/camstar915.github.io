@@ -48,7 +48,7 @@ function printTime(){
 }
 
 function getCookie(name) {
-    var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    var b = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return b ? b.pop() : '';
 }
 
