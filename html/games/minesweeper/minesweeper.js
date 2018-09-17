@@ -46,10 +46,9 @@ function printTime(){
   document.getElementById("printTime").innerHTML = "Time: " + timeCount;
 }
 
-function getCookie(name){
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
+function getCookie(name) {
+    var b = document.cookie.match('(^|;)\\s*' + a + '\\s*=\\s*([^;]+)');
+    return b ? b.pop() : '';
 }
 
 var timeGo = false;
