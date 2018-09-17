@@ -376,7 +376,9 @@ function clickHandler(e){
             drawSquares();
           }
         } else if (event.which == 3){
-          setMarked(r,c);
+          if (!sq[r][c].isShown){
+            setMarked(r,c);
+          }
         }
       }
     }
