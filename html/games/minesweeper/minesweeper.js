@@ -4,7 +4,6 @@ var newGameButton = document.getElementById("newGameButton");
 var scoreboard = document.getElementById("scoreboardMS");
 var scoreText = document.getElementsByClassName("score");
 document.cookie = "bestTime=1000";
-var bestTimeCookie = getCookie(bestTime);
 
 newGameButton.style.visibility = "hidden";
 
@@ -28,10 +27,6 @@ function hello(){
 }
 
 document.getElementById("scoreboardMS").style.fontSize = scoreboardMS.height + "px";
-
-function printBestTime(){
-  document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
-}
 
 function printBombs(){
   document.getElementById("printBombs").innerHTML = "Bombs: " + bombNumber;
@@ -61,6 +56,12 @@ function getCookie(cname) {
         }
     }
     return "";
+}
+
+var bestTimeCookie = getCookie(bestTime);
+
+function printBestTime(){
+  document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
 }
 
 var timeGo = false;
