@@ -3,7 +3,7 @@ var ctx = canvas.getContext("2d");
 var newGameButton = document.getElementById("newGameButton");
 var scoreboard = document.getElementById("scoreboardMS");
 var scoreText = document.getElementsByClassName("score");
-document.cookie = "bestTime=1000; expires=Sun, 15 Sept 2020 00:00:00 UTC";
+document.cookie = "bestTime=1000; expires=Tue, 15 Sept 2020 00:00:00 UTC";
 var bestTimeCookie = getCookie(bestTime);
 
 newGameButton.style.visibility = "hidden";
@@ -29,7 +29,7 @@ function hello(){
 
 document.getElementById("scoreboardMS").style.fontSize = scoreboardMS.height + "px";
 
-function printBestTime(bestTimeCookie){
+function printBestTime(){
   document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
 }
 
@@ -47,9 +47,20 @@ function printTime(){
   document.getElementById("printTime").innerHTML = "Time: " + timeCount;
 }
 
-function getCookie(name) {
-    var b = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-    return b ? b.pop() : '';
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
 }
 
 var timeGo = false;
@@ -309,7 +320,7 @@ function setMarked(r,c){
 }
 
 function drawGame(){
-  printBestTime(bestTimeCookie);
+  printBestTime();
   drawSquares();
   placeBombs();
   printBombs();
