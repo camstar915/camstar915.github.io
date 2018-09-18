@@ -42,53 +42,23 @@ function printTime(){
   document.getElementById("printTime").innerHTML = "Time: " + timeCount;
 }
 
-if (typeof String.prototype.trimLeft !== "function") {
-    String.prototype.trimLeft = function() {
-        return this.replace(/^\s+/, "");
-    };
-}
-if (typeof String.prototype.trimRight !== "function") {
-    String.prototype.trimRight = function() {
-        return this.replace(/\s+$/, "");
-    };
-}
-if (typeof Array.prototype.map !== "function") {
-    Array.prototype.map = function(callback, thisArg) {
-        for (var i=0, n=this.length, a=[]; i<n; i++) {
-            if (i in this) a[i] = callback.call(thisArg, this[i]);
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
         }
-        return a;
-    };
-}
-function getCookies() {
-    var c = document.cookie, v = 0, cookies = {};
-    if (document.cookie.match(/^\s*\$Version=(?:"1"|1);\s*(.*)/)) {
-        c = RegExp.$1;
-        v = 1;
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
     }
-    if (v === 0) {
-        c.split(/[,;]/).map(function(cookie) {
-            var parts = cookie.split(/=/, 2),
-                name = decodeURIComponent(parts[0].trimLeft()),
-                value = parts.length > 1 ? decodeURIComponent(parts[1].trimRight()) : null;
-            cookies[name] = value;
-        });
-    } else {
-        c.match(/(?:^|\s+)([!#$%&'*+\-.0-9A-Z^`a-z|~]+)=([!#$%&'*+\-.0-9A-Z^`a-z|~]*|"(?:[\x20-\x7E\x80\xFF]|\\[\x00-\x7F])*")(?=\s*[,;]|$)/g).map(function($0, $1) {
-            var name = $0,
-                value = $1.charAt(0) === '"'
-                          ? $1.substr(1, -1).replace(/\\(.)/g, "$1")
-                          : $1;
-            cookies[name] = value;
-        });
-    }
-    return cookies;
-}
-function getCookie(name) {
-    return getCookies()[name];
+    return "0";
 }
 
-var bestTimeCookie = getCookie(bestTime);
+var bestTimeCookie = getCookie("bestTime");
 
 function printBestTime(){
   document.getElementById("bestTime").innerHTML = "Best Time: " + bestTimeCookie;
@@ -412,7 +382,7 @@ function clickHandler(e){
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
               timeGo = false;
-              if (getCookie(bestTime)<timeCount){
+              if (bestTimeCookie<timeCount){
                 document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
               }
               checkForBombs(r,c);
