@@ -381,7 +381,7 @@ function clickHandler(e){
             numberShown++;
             if (numberShown >= (squareRows*squareColumns)-bombNumber){
               timeGo = false;
-              if (bestTimeCookie<timeCount){
+              if (bestTimeCookie>timeCount){
                 document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
               }
               checkForBombs(r,c);
