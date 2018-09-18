@@ -55,13 +55,13 @@ function getCookie(cname) {
             return c.substring(name.length, c.length);
         }
     }
-    return "hello";
+    return "0";
 }
 
 var bestTimeCookie = getCookie(bestTime);
 
 function printBestTime(){
-  document.getElementById("bestTime").innerHTML = "Cookie: " + bestTimeCookie;
+  document.getElementById("bestTime").innerHTML = "Best Time: " + bestTimeCookie;
 }
 
 var timeGo = false;
