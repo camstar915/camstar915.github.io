@@ -3,7 +3,6 @@ var ctx = canvas.getContext("2d");
 var newGameButton = document.getElementById("newGameButton");
 var scoreboard = document.getElementById("scoreboardMS");
 var scoreText = document.getElementsByClassName("score");
-document.cookie = "bestTime=1000";
 
 newGameButton.style.visibility = "hidden";
 
