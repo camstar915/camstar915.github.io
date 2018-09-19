@@ -14,7 +14,7 @@ var squareColumns = 10;
 var squarePadding = squareSize/20;
 var colorCovered = "white";
 var colorUncovered = "#26BBBF";
-var colorMarked = "#727777"
+var colorMarked = "#727777";
 var bombNumber = 20;
 var numberShown = 0;
 var numberMarked = 0;
@@ -101,7 +101,7 @@ for (var r=0; r<squareRows; r++){
       isShown:false,
       isMarked:false,
       isBomb:false,
-      bombsNear:0
+      bombsNear: ""
     }
   }
 }
@@ -123,136 +123,142 @@ function placeBombs(){
   }
 }
 
-function checkForBombs (r,c){
-  var square = sq[r][c];
-  if (r>0 && r<squareRows-1 && c>0 && c<squareColumns-1){
-    if (sq[r-1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (c>0 && c<squareColumns-1 && r>0){
-    if (sq[r-1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (r>0 && r<squareRows-1 && c>0){
-    if (sq[r-1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
-    }
-  } else if (c>0 && c<squareColumns-1){
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (r>0 && r<squareRows-1){
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (r<squareRows-1 && c<squareColumns-1){
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (r>0 && c<squareColumns-1){
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c+1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c+1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (r>0 && c>0){
-    if (sq[r-1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r-1][c].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-  } else if (c>0 && r<squareRows-1){
-    if (sq[r][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c-1].isBomb){
-      square.bombsNear++;
-    }
-    if (sq[r+1][c].isBomb){
-      square.bombsNear++;
+function checkForBombs (){
+  for (r=0; r<squareRows; r++){
+    for (c=0; c<squareColumns; c++){
+      var square = sq[r][c];
+      if (!square.isBomb){
+        if (r>0 && r<squareRows-1 && c>0 && c<squareColumns-1){
+          if (sq[r-1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (c>0 && c<squareColumns-1 && r>0){
+          if (sq[r-1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (r>0 && r<squareRows-1 && c>0){
+          if (sq[r-1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+        } else if (c>0 && c<squareColumns-1){
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (r>0 && r<squareRows-1){
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (r<squareRows-1 && c<squareColumns-1){
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (r>0 && c<squareColumns-1){
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c+1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c+1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (r>0 && c>0){
+          if (sq[r-1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r-1][c].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+        } else if (c>0 && r<squareRows-1){
+          if (sq[r][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c-1].isBomb){
+            square.bombsNear++;
+          }
+          if (sq[r+1][c].isBomb){
+            square.bombsNear++;
+          }
+        }
+      }
     }
   }
 }
@@ -268,7 +274,7 @@ function drawBomb (r,c){
   var box = sq[r][c];
   ctx.font = (squareSize/2)+"px Arial";
   ctx.fillStyle = "#26BBBF";
-  ctx.fillText(box.bombsNear, box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
+  ctx.fillText("B", box.x+((squareSize/2)/1.4), box.y+((squareSize/2))*1.3)
 }
 
 function showBombs(){
@@ -305,6 +311,60 @@ function drawSquares() {
   printMarked();
 }
 
+function revealZeros(r,c){
+
+  if (sq != undefined && sq[r-1] != undefined && sq[r-1][c-1] != undefined){
+    revealNextCell(r-1,c-1);
+  }
+  if (sq != undefined && sq[r-1] != undefined && sq[r-1][c] != undefined){
+    revealNextCell(r-1,c);
+  }
+  if (sq != undefined && sq[r-1] != undefined && sq[r-1][c+1] != undefined){
+    revealNextCell(r-1,c+1);
+  }
+  if (sq != undefined && sq[r] != undefined && sq[r][c-1] != undefined){
+    revealNextCell(r,c-1);
+  }
+  if (sq != undefined && sq[r] != undefined && sq[r][c+1] != undefined){
+    revealNextCell(r,c+1);
+  }
+  if (sq != undefined && sq[r+1] != undefined && sq[r+1][c-1] != undefined){
+    revealNextCell(r+1,c-1);
+  }
+  if (sq != undefined && sq[r+1] != undefined && sq[r+1][c] != undefined){
+    revealNextCell(r+1,c);
+  }
+  if (sq != undefined && sq[r+1] != undefined && sq[r+1][c+1] != undefined){
+    revealNextCell(r+1,c+1);
+  }
+  if (!sq[r][c].isShown){
+    sq[r][c].isShown = true;
+    numberShown++;
+    drawSquares();
+  }
+}
+
+function revealNextCell(r,c){
+  if (sq[r][c].isBomb){
+    return;
+  }
+  if (sq[r][c].isShown){
+    return;
+  }
+  if (sq[r][c].bombsNear == ""){
+    sq[r][c].isShown = true;
+    numberShown++;
+    drawSquares();
+    revealZeros(r,c);
+  } else if (sq[r][c].isBomb){
+    return;
+  } else {
+    sq[r][c].isShown = true;
+    numberShown++;
+    drawSquares();
+  }
+}
+
 function setMarked(r,c){
   if (sq[r][c].isMarked == true){
     disableClick();
@@ -323,6 +383,7 @@ function drawGame(){
   printBestTime();
   drawSquares();
   placeBombs();
+  checkForBombs();
   printBombs();
   enableClick();
   printTime();
@@ -376,6 +437,9 @@ function clickHandler(e){
           } else if (sq[r][c].isShown == false){
               if (sq[r][c].isMarked == true){
                 return
+              } else if (sq[r][c].bombsNear == 0){
+                revealZeros(r,c);
+                return;
               }
             sq[r][c].isShown = true;
             numberShown++;
@@ -384,13 +448,12 @@ function clickHandler(e){
               if (bestTimeCookie>timeCount){
                 document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
               }
-              checkForBombs(r,c);
-              drawSquares();
               showBombs();
+              drawSquares();
               disableClick();
+              printBestTime();
               newGameButton.style.visibility = "visible";
             }
-            checkForBombs(r,c);
             drawSquares();
           }
         } else if (event.which == 3){
@@ -410,7 +473,7 @@ function newGame(){
       sq[r][c].isShown = false;
       sq[r][c].isBomb = false;
       sq[r][c].isMarked = false;
-      sq[r][c].bombsNear = 0;
+      sq[r][c].bombsNear = "";
     }
     numberShown = 0;
     numberMarked = 0;
