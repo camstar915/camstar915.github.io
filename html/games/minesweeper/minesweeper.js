@@ -379,6 +379,21 @@ function setMarked(r,c){
   }
 }
 
+function checkWin(){
+  if (numberShown >= (squareRows*squareColumns)-bombNumber){
+    timeGo = false;
+    if (bestTimeCookie>timeCount){
+      document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
+    }
+    showBombs();
+    disableClick();
+    printBestTime();
+    newGameButton.style.visibility = "visible";
+  } else {
+    return false;
+  }
+}
+
 function drawGame(){
   printBestTime();
   drawSquares();
@@ -407,7 +422,9 @@ function touchHandler(e){
   for (r=0; r<squareRows; r++){
     for  (c=0; c<squareColumns; c++){
       if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
-        timer = setTimeout(setMarked.bind(null,r,c), longPressDelay);
+        if (!sq[r][c].isShown){
+          timer = setTimeout(setMarked.bind(null,r,c), longPressDelay);
+        }
       }
     }
   }
@@ -429,36 +446,27 @@ function clickHandler(e){
           if (sq[r][c].isBomb){
               if (sq[r][c].isMarked == true){
                 return;
+              } else {
+                timeGo = false;
+                showBombs();
+                disableClick();
+                newGameButton.style.visibility = "visible";
               }
-            timeGo = false;
-            showBombs();
-            disableClick();
-            newGameButton.style.visibility = "visible";
-          } else if (sq[r][c].isShown == false){
+            } else if (sq[r][c].isShown == false){
               if (sq[r][c].isMarked == true){
-                return
+                return;
               } else if (sq[r][c].bombsNear == 0){
                 revealZeros(r,c);
-                return;
+              } else {
+                sq[r][c].isShown = true;
+                numberShown++;
+                drawSquares();
               }
-            sq[r][c].isShown = true;
-            numberShown++;
-            if (numberShown >= (squareRows*squareColumns)-bombNumber){
-              timeGo = false;
-              if (bestTimeCookie>timeCount){
-                document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
-              }
-              showBombs();
-              drawSquares();
-              disableClick();
-              printBestTime();
-              newGameButton.style.visibility = "visible";
             }
-            drawSquares();
-          }
-        } else if (event.which == 3){
-          if (!sq[r][c].isShown){
-            setMarked(r,c);
+            checkWin();
+          } else if (event.which == 3){
+            if (!sq[r][c].isShown){
+              setMarked(r,c);
           }
         }
       }
