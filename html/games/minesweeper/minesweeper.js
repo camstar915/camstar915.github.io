@@ -387,7 +387,6 @@ function checkWin(){
     }
     showBombs();
     disableClick();
-    printBestTime();
     newGameButton.style.visibility = "visible";
   } else {
     return false;
@@ -488,6 +487,7 @@ function newGame(){
     timeCount = 0;
   }
   drawGame();
+  printBestTime();
 }
 
 drawGame();
