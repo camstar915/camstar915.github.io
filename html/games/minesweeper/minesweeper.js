@@ -59,9 +59,9 @@ function getCookie(cname) {
 
 var bestTimeCookie = getCookie("bestTime");
 
-function printBestTime(){
-  document.getElementById("bestTime").innerHTML = "Best Time: " + bestTimeCookie;
-}
+//function printBestTime(){
+//  document.getElementById("bestTime").innerHTML = "Best Time: " + bestTimeCookie;
+//}
 
 var timeGo = false;
 function runTime(){
@@ -394,7 +394,7 @@ function checkWin(){
 }
 
 function drawGame(){
-  printBestTime();
+  //printBestTime();
   drawSquares();
   placeBombs();
   checkForBombs();
