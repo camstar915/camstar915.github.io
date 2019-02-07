@@ -387,10 +387,19 @@ function checkWin(){
     }
     showBombs();
     disableClick();
+    showWin();
     newGameButton.style.visibility = "visible";
   } else {
     return false;
   }
+}
+
+function showWin(){
+  newGameButton.innerHTML = "You Win! New Game"
+}
+
+function showLoss(){
+  newGameButton.innerHTML = "You lost... Try Again"
 }
 
 function drawGame(){
@@ -449,6 +458,7 @@ function clickHandler(e){
                 timeGo = false;
                 showBombs();
                 disableClick();
+                showLoss();
                 newGameButton.style.visibility = "visible";
               }
             } else if (sq[r][c].isShown == false){
