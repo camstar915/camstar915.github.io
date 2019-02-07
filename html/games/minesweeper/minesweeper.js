@@ -497,7 +497,7 @@ function newGame(){
     timeCount = 0;
   }
   drawGame();
-  printBestTime();
+  //printBestTime();
 }
 
 drawGame();
