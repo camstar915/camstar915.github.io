@@ -110,11 +110,29 @@ function randNum(min, max){
   return Math.floor(Math.random()*(max-min+1))+min;
 }
 
-function placeBombs(){
+function placeBombs(r,c){
   for (b=0; b<bombNumber; b++){
     var y = randNum(0,squareRows-1);
     var z = randNum(0,squareColumns-1);
-    if (sq[y][z].isBomb){
+    if (y==r && z==c) {
+      b--;
+    } else if (y==r-1 && z==c){
+      b--;
+    } else if (y==r-1 && z==c-1){
+      b--;
+    } else if (y==r-1 && z==c+1){
+      b--;
+    } else if (y==r && z==c-1){
+      b--;
+    } else if (y==r && z==c+1){
+      b--;
+    } else if (y==r+1 && z==c){
+      b--;
+    } else if (y==r+1 && z==c-1){
+      b--;
+    } else if (y==r+1 && z==c+1){
+      b--;
+    } else if (sq[y][z].isBomb){
       b--;
     } else {
       sq[y][z].isBomb = true;
@@ -403,10 +421,9 @@ function showLoss(){
 }
 
 function drawGame(){
-  //printBestTime();
   drawSquares();
-  placeBombs();
-  checkForBombs();
+  //placeBombs();
+  //checkForBombs();
   printBombs();
   enableClick();
   printTime();
@@ -443,8 +460,23 @@ function touchHandler(e){
   }
 }
 
+var firstClick = true;
+
 function clickHandler(e){
   timeGo = true;
+  if(firstClick){
+  var relativeX = e.pageX - canvas.offsetLeft;
+  var relativeY = e.pageY - canvas.offsetTop;
+  for (r=0; r<squareRows; r++){
+    for (c=0; c<squareColumns; c++){
+      if (relativeX > sq[r][c].x && relativeX < sq[r][c].x+squareSize && relativeY > sq[r][c].y && relativeY < sq[r][c].y+squareSize) {
+          placeBombs(r,c);
+          checkForBombs();
+          firstClick = false;
+        }
+      }
+    }
+  }
   var relativeX = e.pageX - canvas.offsetLeft;
   var relativeY = e.pageY - canvas.offsetTop;
   for (r=0; r<squareRows; r++){
@@ -496,8 +528,9 @@ function newGame(){
     numberMarked = 0;
     timeCount = 0;
   }
+  firstClick = true;
   drawGame();
-  printBestTime();
+  //printBestTime();
 }
 
 drawGame();
