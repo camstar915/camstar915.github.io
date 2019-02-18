@@ -20,6 +20,7 @@ var numberShown = 0;
 var numberMarked = 0;
 var timeCount = 0;
 var longPressDelay = 500;
+var userBest = 0;
 
 function hello(){
   console.log("hello");
@@ -41,27 +42,9 @@ function printTime(){
   document.getElementById("printTime").innerHTML = "Time: " + timeCount;
 }
 
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "Let's see what you've got";
+function printBestTime(){
+  document.getElementById("bestTime").innerHTML = "Best Time: " + userBest;
 }
-
-var bestTimeCookie = getCookie("bestTime");
-
-//function printBestTime(){
-//  document.getElementById("bestTime").innerHTML = "Best Time: " + bestTimeCookie;
-//}
 
 var timeGo = false;
 function runTime(){
@@ -400,12 +383,15 @@ function setMarked(r,c){
 function checkWin(){
   if (numberShown >= (squareRows*squareColumns)-bombNumber){
     timeGo = false;
-    if (bestTimeCookie>timeCount){
-      document.cookie = "bestTime=" + timeCount + "; expires=Sun, 15 Sept 2019 00:00:00 UTC";
-    }
     showBombs();
     disableClick();
     showWin();
+    if(userBest == 0){
+      userBest = timeCount;
+    } else if(timeCount<userBest){
+      userBest = timeCount;
+    }
+    printBestTime();
     newGameButton.style.visibility = "visible";
   } else {
     return false;
