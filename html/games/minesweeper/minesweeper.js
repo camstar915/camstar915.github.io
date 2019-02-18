@@ -422,8 +422,6 @@ function showLoss(){
 
 function drawGame(){
   drawSquares();
-  //placeBombs();
-  //checkForBombs();
   printBombs();
   enableClick();
   printTime();
