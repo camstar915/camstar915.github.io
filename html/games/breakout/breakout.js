@@ -158,7 +158,7 @@ function mouseMoveHandler(e){
   var relativeY = e.clientY - canvas.offsetTop;                    //creates relativeX and sets it equal to the position of the mouse (clientX)
   if(relativeX > 0 && relativeX < canvas.width && relativeY > 0 && relativeY < canvas.height){                    //if the mouse is within the canvas dimensions, set relativeX equal to the center of the paddle and set play equal to true
     play = true;
-    if (relativeX > 0) {
+    if (relativeX > paddleWidth/2 && relativeX < canvas.width - paddleWidth/2) {
       paddlePos = relativeX - paddleWidth/2;
     }
   } else {
