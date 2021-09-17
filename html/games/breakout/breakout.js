@@ -178,7 +178,9 @@ function touchHandler (e){
     body.style.position = "relative";
     html.style.overflowY = "hidden";
     play = true;
-    paddlePos = relativeX - paddleWidth/2;
+    if (relativeX > paddleWidth/2 && relativeX < canvas.width - paddleWidth/2) {
+      paddlePos = relativeX - paddleWidth/2;
+    }
   } else {
     play = false;
     //allows vertical scrolling when user moves finger off game canvas or below
