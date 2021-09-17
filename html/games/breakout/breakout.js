@@ -237,7 +237,7 @@ function collisionDetection(){
     for (var c=0; c < brickColumnCount; c++){
       var b = bricks[r][c];
       if(b.status == 1){                                          //makes sure status hasn't been changed to 0
-        if (x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight){ //checks if ball is inside brick
+        if (x > (b.x-ballRadius) && x < (b.x+brickWidth+ballRadius) && y > (b.y-ballRadius) && y < (b.y+brickHeight+ballRadius)){ //checks if ball is inside brick
           dy = -dy;
           speedUp();
           b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
