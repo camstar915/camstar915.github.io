@@ -231,15 +231,35 @@ function speedUp(){
   }
 }
 
+// added via https://stackoverflow.com/questions/21089959/detecting-collision-of-rectangle-with-circle on 9/20/21
+function collides (brick)
+{
+    // compute a center-to-center vector
+    var half = { x: brickWidth/2, y: brickHeight/2 };
+    var center = {
+        x: x - (brick.x+half.x),
+        y: y - (brick.y+half.y)};
+
+    // check circle position inside the rectangle quadrant
+    var side = {
+        x: Math.abs (center.x) - half.x,
+        y: Math.abs (center.y) - half.y};
+    if (side.x >  ballRadius || side.y >  ballRadius) // outside
+        return false; 
+    if (side.x < 0 || side.y < 0) // intersects side or corner
+        return true;
+
+    // circle is near the corner
+    return side.x*side.x + side.y*side.y  < ballRadius*ballRadius;
+}
+
 //checks for ball hitting brick
 function collisionDetection(){
   for (var r=0; r < brickRowCount; r++){                       //loops used to check each brick for each frame
     for (var c=0; c < brickColumnCount; c++){
       var b = bricks[r][c];
-      if(b.status == 1){                                          //makes sure status hasn't been changed to 0
-        var brickX = b.x;
-        var brickY = b.y;
-        if (x > (brickX-ballRadius) && x < (brickX+brickWidth+ballRadius) && y > (brickY-ballRadius) && y < (brickY+brickHeight+ballRadius)){ //checks if ball is inside brick
+      if(b.status == 1){
+        if (collides(b)){ //checks if ball is inside brick
           dy = -dy;
           speedUp();
           b.status = 0;                                           //sets brick status to 0 if brick was hit. brick doesn't render in next frame
