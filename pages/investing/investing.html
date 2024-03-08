@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-124362808-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-124362808-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+      gtag('config', 'UA-124362808-1');
+    </script>
 
-  gtag('config', 'UA-124362808-1');
-</script>
+    <title>Investing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
+    <link rel="stylesheet" href="../../css/styleMain.css" />
+  </head>
 
-  <title>Investing</title>
-  <meta charset = "utf-8">
-  <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
-  <link rel="stylesheet" href="../../css/styleMain.css">
-</head>
+  <body>
+    <header class="headerContainer" id="indexPageHeader">
+      <h1 id="investingPageHeader">This is the investing page.</h1>
+    </header>
+    <div class="logoContainer">
+      <img src="../../logo/csTransparant.png" />
+    </div>
+    <nav class="navLinksContainer">
+      <a class="navButton hvr-bob" href="../../index.html">Home</a>
+      <!-- <a class = "navButton hvr-bob" href = "../sports/sports.html">Sports</a> -->
+      <a class="active navButton hvr-bob" href="investing.html">Investing</a>
+      <a class="navButton hvr-bob" href="../games/games.html">Games</a>
+    </nav>
 
-<body>
+    <div class="pageBanner">
+      <h2 class="pageBanner">Companies</h2>
+    </div>
 
-  <header class = "headerContainer" id = "indexPageHeader">
-    <h1 id = "investingPageHeader">This is the investing page.</h1>
-  </header>
-  <div class = "logoContainer">
-    <img src = "../../logo/csTransparant.png">
-  </div>
-  <nav class = "navLinksContainer">
-    <a class = "navButton hvr-bob" href = "../../index.html">Home</a>
-    <a class = "navButton hvr-bob" href = "../sports/sports.html">Sports</a>
-    <a class = "active navButton hvr-bob" href = "investing.html">Investing</a>
-    <a class = "navButton hvr-bob" href = "../games/games.html">Games</a>
-  </nav>
-
-  <div class = "pageBanner">
-    <h2 class = "pageBanner">Stocks and Business</h2>
-  </div>
-
-</body>
+    <div class="tileContainer">
+      <a href="articles/tesla.html">
+        <div class="tile">
+          <img
+            src="../../images/Tesla_logo.png"
+            alt="Tesla Logo"
+            class="tileImage"
+          />
+        </div>
+      </a>
+    </div>
+  </body>
 </html>

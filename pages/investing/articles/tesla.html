@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tesla Motors, Inc. Article Outline</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .header img {
+        max-width: 200px; /* Control the size of the image */
+        height: auto;
+      }
+      .header h1 {
+        font-size: 32px;
+      }
+      .section {
+        margin-bottom: 20px;
+      }
+      .expandable-content {
+        display: none;
+        margin-top: 10px;
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .expandable-button {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="../../../images/Tesla_logo.png" alt="Tesla Logo" />
+      <h1>Tesla Motors, Inc.</h1>
+    </div>
+
+    <div class="introduction section">
+      <h2>Introduction</h2>
+      <p>
+        This article will explore Tesla's journey from its inception, through
+        its current innovations, to its future aspirations. We will delve into
+        the company's culture and track record, its current endeavors, and the
+        exciting future opportunities that lie ahead, including the development
+        of the Tesla Bot, Optimus.
+      </p>
+    </div>
+
+    <div class="culture-track-record section">
+      <h2>Culture and Track Record</h2>
+      <div
+        onclick="toggleExpandable('founding-early-years')"
+        class="expandable-button"
+      >
+        Founding and Early Years
+      </div>
+      <div id="founding-early-years" class="expandable-content">
+        <p>
+          Tesla was founded in 2003 by Martin Eberhard and Marc Tarpenning and
+          was named after inventor Nikola Tesla. Elon Musk became involved as
+          chairman in 2004 and later took over as CEO. The company released its
+          first electric car, the Roadster, in 2008, which was notable for its
+          impressive range and performance[1][5].
+        </p>
+      </div>
+      <!-- Add more expandable sections as needed -->
+    </div>
+
+    <div class="current-endeavors section">
+      <h2>Current Endeavors</h2>
+      <div
+        onclick="toggleExpandable('vehicle-production')"
+        class="expandable-button"
+      >
+        Vehicle Production and Global Expansion
+      </div>
+      <div id="vehicle-production" class="expandable-content">
+        <p>
+          Tesla has expanded its production to over one million vehicles at
+          sites in the US and China, with plans to build new factories in Berlin
+          and enter the Indian market[2].
+        </p>
+      </div>
+      <div
+        onclick="toggleExpandable('energy-solutions')"
+        class="expandable-button"
+      >
+        Energy Solutions and Sustainability Efforts
+      </div>
+      <div id="energy-solutions" class="expandable-content">
+        <p>
+          Tesla is not only a car manufacturer but also produces solar panels
+          and batteries for cars and home power storage, aiming to replace some
+          of the planet's biggest polluters[3].
+        </p>
+      </div>
+      <!-- Add more expandable sections as needed -->
+    </div>
+
+    <div class="future-opportunities section">
+      <h2>Future Opportunities</h2>
+      <div
+        onclick="toggleExpandable('vehicle-lineup-expansion')"
+        class="expandable-button"
+      >
+        Expansion of the Vehicle Lineup
+      </div>
+      <div id="vehicle-lineup-expansion" class="expandable-content">
+        <p>
+          Tesla plans to start production of a new mass market electric vehicle
+          codenamed "Redwood" in mid-2025, which is expected to be a compact
+          crossover[6].
+        </p>
+      </div>
+      <div
+        onclick="toggleExpandable('tesla-bot-optimus')"
+        class="expandable-button"
+      >
+        The Future of Tesla Bot, Optimus
+      </div>
+      <div id="tesla-bot-optimus" class="expandable-content">
+        <p>
+          Optimus, also known as Tesla Bot, is a general-purpose robotic
+          humanoid under development by Tesla. It is designed to perform tasks
+          that are dangerous, repetitive, or boring. Elon Musk has stated that
+          Optimus could be production-ready by 2023 and could be more
+          significant than Tesla's vehicle business[4].
+        </p>
+      </div>
+      <!-- Add more expandable sections as needed -->
+    </div>
+
+    <script>
+      function toggleExpandable(id) {
+        var content = document.getElementById(id);
+        // Check if the display property is not set or is 'none'
+        if (content.style.display === '' || content.style.display === 'none') {
+          content.style.display = 'block';
+        } else {
+          content.style.display = 'none';
+        }
+      }
+    </script>
+  </body>
+</html>
