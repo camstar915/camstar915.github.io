@@ -7,6 +7,8 @@
     <style>
       body {
         font-family: Arial, sans-serif;
+        padding: 0px;
+        margin: 0px;
       }
       .header {
         text-align: center;
@@ -25,14 +27,18 @@
       .expandable-content {
         max-height: 0;
         overflow: hidden;
-        padding: 15px;
+        padding: 15px 0;
         transition: max-height 0.3s ease;
+      }
+      .expandable-content p {
+        padding: 8px;
       }
       .expandable-button {
         cursor: pointer;
         color: #007bff;
         text-decoration: none;
         background-color: #f9f9f9;
+        margin: 8px;
         padding: 10px;
         display: inline-block;
         border: 1px solid #ddd;
@@ -57,12 +63,180 @@
         margin-top: 20px;
         font-size: 20px;
       }
+      table {
+        width: 100%;
+        max-width: fit-content;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      .percentage {
+        color: green;
+      }
+      @media screen and (max-width: 600px) {
+        th,
+        td {
+          padding: 5px;
+          font-size: 12px;
+        }
+        .responsive-table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
     </style>
   </head>
   <body>
     <div class="header">
       <img src="../../../images/Tesla_logo.png" alt="Tesla Logo" />
       <h1>Tesla Motors, Inc.</h1>
+      <p style="font-size: smaller">3/17/2024</p>
+    </div>
+
+    <div class="current-endeavors section">
+      <h2>Today</h2>
+      <div
+        onclick="toggleExpandable('vehicle-manufacturing')"
+        class="expandable-button"
+      >
+        Vehicle Engineering and Manufacturing
+      </div>
+      <div id="vehicle-manufacturing" class="expandable-content">
+        <p>Gigacastings</p>
+        <p>4680 Battery Cells</p>
+        <p>Lean design</p>
+        <p>
+          Tesla has stated EV production growth "notably lower" in 2024 as they
+          focus on ramping the production of the new mass market platform
+          codenamed "Redwood" rumored to be a $25,000 compact crossover.
+        </p>
+        <table>
+          <tr>
+            <th>Year</th>
+            <th>2019</th>
+            <th>2020</th>
+            <th>2021</th>
+            <th>2022</th>
+            <th>2023</th>
+            <th>Growth</th>
+          </tr>
+          <tr>
+            <td>Model 3/Y Production</td>
+            <td>302,301</td>
+            <td>454,932</td>
+            <td>906,032</td>
+            <td>1,298,434</td>
+            <td>1,775,159</td>
+            <td class="percentage">37%</td>
+          </tr>
+          <tr>
+            <td>Other Models Production</td>
+            <td>62,931</td>
+            <td>54,805</td>
+            <td>24,390</td>
+            <td>71,177</td>
+            <td>70,826</td>
+            <td>0%</td>
+          </tr>
+          <tr>
+            <td>Total Production</td>
+            <td>365,232</td>
+            <td>509,737</td>
+            <td>930,422</td>
+            <td>1,369,611</td>
+            <td>1,845,985</td>
+            <td class="percentage">35%</td>
+          </tr>
+        </table>
+        <cite>Source: Tesla, Inc. 10-K filings</cite>
+      </div>
+
+      <div
+        onclick="toggleExpandable('energy-solutions')"
+        class="expandable-button"
+      >
+        Energy Storage and Generation
+      </div>
+      <div id="energy-solutions" class="expandable-content">
+        <p>Megapack</p>
+        <p>Powerwall</p>
+        <p>Solar</p>
+      </div>
+      <div onclick="toggleExpandable('ai')" class="expandable-button">
+        Artificial Intelligence and Full Self-Driving
+      </div>
+      <div id="ai" class="expandable-content">
+        <p>Data</p>
+        <p>Dojo</p>
+        <p>Hardware</p>
+        <p>Full Self-Driving (FSD) Beta</p>
+        <p>Tesla Bot, Optimus</p>
+      </div>
+    </div>
+
+    <div class="culture-track-record section">
+      <h2>Culture and Track Record</h2>
+      <div
+        onclick="toggleExpandable('founding-early-years')"
+        class="expandable-button"
+      >
+        Founding and Early Years
+      </div>
+      <div id="founding-early-years" class="expandable-content">
+        <p>
+          Tesla was founded in 2003 by Martin Eberhard and Marc Tarpenning and
+          was named after inventor Nikola Tesla. Elon Musk became involved as
+          chairman in 2004 and later took over as CEO. The company released its
+          first electric car, the Roadster, in 2008, which was notable for its
+          impressive range and performance[1][5].
+        </p>
+      </div>
+      <!-- Add more expandable sections as needed -->
+    </div>
+
+    <div class="future-opportunities section">
+      <h2>Future Opportunities</h2>
+      <div
+        onclick="toggleExpandable('vehicle-lineup-expansion')"
+        class="expandable-button"
+      >
+        Expansion of the Vehicle Lineup
+      </div>
+      <div id="vehicle-lineup-expansion" class="expandable-content">
+        <p>
+          Tesla plans to start production of a new mass market electric vehicle
+          codenamed "Redwood" in mid-2025, which is expected to be a compact
+          crossover[6].
+        </p>
+      </div>
+      <div
+        onclick="toggleExpandable('tesla-bot-optimus')"
+        class="expandable-button"
+      >
+        The Future of Tesla Bot, Optimus
+      </div>
+      <div id="tesla-bot-optimus" class="expandable-content">
+        <p>
+          Optimus, also known as Tesla Bot, is a general-purpose robotic
+          humanoid under development by Tesla. It is designed to perform tasks
+          that are dangerous, repetitive, or boring. Elon Musk has stated that
+          Optimus could be production-ready by 2023 and could be more
+          significant than Tesla's vehicle business[4].
+        </p>
+      </div>
+      <!-- Add more expandable sections as needed -->
     </div>
 
     <div class="overview section">
@@ -330,7 +504,10 @@
       />
     </div>
     <button onclick="resetValues()">Reset</button>
-    <p>
+    <div id="result">
+      Estimated Stock Price: $<span id="estimatedStockPrice">-</span>
+    </div>
+    <p style="font-size: 1em">
       Estimate does not include Optimus, energy generation or storage products,
       tesla services, ev charging infrastructure, or potential FSD licensing
     </p>
