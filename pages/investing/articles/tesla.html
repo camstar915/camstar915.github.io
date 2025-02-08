@@ -236,42 +236,42 @@
     <h2>Stock Price Estimator</h2>
     <div class="slider-group">
       <label for="evSales"
-        >EV Sales per Year: <span id="evSalesValue">1800000</span></label
+        >EV Sales per Year: <span id="evSalesValue">1810000</span></label
       >
       <input
         type="range"
         id="evSales"
         min="100000"
         max="20000000"
-        value="1800000"
+        value="1810000"
         step="100000"
       />
     </div>
     <div class="slider-group">
       <label for="avgSellingPrice"
         >Average Selling Price ($):
-        <span id="avgSellingPriceValue">47000</span></label
+        <span id="avgSellingPriceValue">42000</span></label
       >
       <input
         type="range"
         id="avgSellingPrice"
         min="20000"
         max="100000"
-        value="47000"
+        value="42000"
         step="1000"
       />
     </div>
     <div class="slider-group">
       <label for="profitMargin"
-        >EV Profit Margin (%): <span id="evProfitMarginValue">17</span></label
+        >Operating Margin (%): <span id="evProfitMarginValue">8</span></label
       >
       <input
         type="range"
         id="evProfitMargin"
         min="0"
         max="30"
-        value="17"
-        step="1"
+        value="8"
+        step="0.1"
       />
     </div>
     <div class="slider-group">
@@ -316,26 +316,65 @@
       />
     </div>
     <div class="slider-group">
-      <label for="peRatio">P/E Ratio: <span id="peRatioValue">35</span></label>
-      <input type="range" id="peRatio" min="1" max="100" value="35" step="1" />
+      <label for="optimusSales"
+        >Optimus Sales per Year: <span id="optimusSalesValue">0</span></label
+      >
+      <input
+        type="range"
+        id="optimusSales"
+        min="0"
+        max="10000000"
+        value="0"
+        step="10000"
+      />
+    </div>
+    <div class="slider-group">
+      <label for="optimusPrice"
+        >Optimus Price per Unit ($): <span id="optimusPriceValue">20000</span></label
+      >
+      <input
+        type="range"
+        id="optimusPrice"
+        min="5000"
+        max="100000"
+        value="20000"
+        step="1000"
+      />
+    </div>
+    <div class="slider-group">
+      <label for="optimusProfitMargin"
+        >Optimus Profit Margin (%): <span id="optimusProfitMarginValue">60</span></label
+      >
+      <input
+        type="range"
+        id="optimusProfitMargin"
+        min="0"
+        max="80"
+        value="60"
+        step="1"
+      />
+    </div>
+    <div class="slider-group">
+      <label for="peRatio">P/E Ratio: <span id="peRatioValue">183</span></label>
+      <input type="range" id="peRatio" min="1" max="200" value="183" step="1" />
     </div>
     <div class="slider-group">
       <label for="sharesOutstanding"
         >Shares Outstanding (millions):
-        <span id="sharesOutstandingValue">3000</span></label
+        <span id="sharesOutstandingValue">3190</span></label
       >
       <input
         type="range"
         id="sharesOutstanding"
         min="500"
         max="5000"
-        value="3000"
-        step="100"
+        value="3190"
+        step="10"
       />
     </div>
     <button onclick="resetValues()">Reset</button>
     <p style="font-size: xx-small">
-      Estimate does not include Optimus, energy generation or storage products,
+      Estimate does not include energy generation or storage products,
       tesla services, ev charging infrastructure, potential FSD licensing, or
       any other potential businesses. Meaning this is a conservative estimate.
     </p>
@@ -371,18 +410,24 @@
         const robotaxisProfitMargin =
           parseInt(document.getElementById('robotaxisProfitMargin').value, 10) /
           100;
+        const optimusSales = parseInt(document.getElementById('optimusSales').value, 10);
+        const optimusPrice = parseInt(document.getElementById('optimusPrice').value, 10);
+        const optimusProfitMargin = 
+          parseInt(document.getElementById('optimusProfitMargin').value, 10) / 100;
         const peRatio = parseInt(document.getElementById('peRatio').value, 10);
         const sharesOutstanding =
           parseInt(document.getElementById('sharesOutstanding').value, 10) *
           1e6;
 
-        const totalRevenue =
-          evSales * avgSellingPrice + robotaxis * robotaxisRevenuePerCar;
         const evRevenue = evSales * avgSellingPrice;
         const robotaxisRevenue = robotaxis * robotaxisRevenuePerCar;
+        const optimusRevenue = optimusSales * optimusPrice;
+        
         const evNetEarnings = evRevenue * evProfitMargin;
         const robotaxisNetEarnings = robotaxisRevenue * robotaxisProfitMargin;
-        const netEarnings = evNetEarnings + robotaxisNetEarnings;
+        const optimusNetEarnings = optimusRevenue * optimusProfitMargin;
+        
+        const netEarnings = evNetEarnings + robotaxisNetEarnings + optimusNetEarnings;
         const marketCap = netEarnings * peRatio;
         const stockPrice = marketCap / sharesOutstanding;
 
@@ -414,6 +459,18 @@
           ).toLocaleString();
         document.getElementById('robotaxisProfitMarginValue').innerText =
           parseInt(document.getElementById('robotaxisProfitMargin').value, 10);
+        document.getElementById('optimusSalesValue').innerText = parseInt(
+          document.getElementById('optimusSales').value,
+          10
+        ).toLocaleString();
+        document.getElementById('optimusPriceValue').innerText = parseInt(
+          document.getElementById('optimusPrice').value,
+          10
+        ).toLocaleString();
+        document.getElementById('optimusProfitMarginValue').innerText = parseInt(
+          document.getElementById('optimusProfitMargin').value,
+          10
+        );
         document.getElementById('peRatioValue').innerText = parseInt(
           document.getElementById('peRatio').value,
           10
@@ -426,14 +483,17 @@
       }
 
       function resetValues() {
-        document.getElementById('evSales').value = 1800000;
-        document.getElementById('avgSellingPrice').value = 47000;
-        document.getElementById('evProfitMargin').value = 17;
+        document.getElementById('evSales').value = 1810000;
+        document.getElementById('avgSellingPrice').value = 42000;
+        document.getElementById('evProfitMargin').value = 8;
         document.getElementById('robotaxis').value = 0;
         document.getElementById('robotaxisRevenuePerCar').value = 15000;
         document.getElementById('robotaxisProfitMargin').value = 80;
-        document.getElementById('peRatio').value = 35;
-        document.getElementById('sharesOutstanding').value = 3000;
+        document.getElementById('optimusSales').value = 0;
+        document.getElementById('optimusPrice').value = 20000;
+        document.getElementById('optimusProfitMargin').value = 60;
+        document.getElementById('peRatio').value = 183;
+        document.getElementById('sharesOutstanding').value = 3190;
         updateValues();
       }
 
@@ -454,6 +514,15 @@
         .addEventListener('input', updateValues);
       document
         .getElementById('robotaxisProfitMargin')
+        .addEventListener('input', updateValues);
+      document
+        .getElementById('optimusSales')
+        .addEventListener('input', updateValues);
+      document
+        .getElementById('optimusPrice')
+        .addEventListener('input', updateValues);
+      document
+        .getElementById('optimusProfitMargin')
         .addEventListener('input', updateValues);
       document
         .getElementById('peRatio')
