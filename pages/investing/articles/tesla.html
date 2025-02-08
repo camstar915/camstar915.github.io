@@ -3,383 +3,404 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tesla Motors, Inc. Article Outline</title>
+    <title>Tesla Motors, Inc. Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --tesla-red: #cc0000;
+        --tesla-black: #000000;
+        --tesla-white: #ffffff;
+        --tesla-silver: #666666;
+        --tesla-gray: #f4f4f4;
+        --transition-speed: 0.3s;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: Arial, sans-serif;
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        color: var(--tesla-black);
+        background-color: var(--tesla-white);
+        overflow-x: hidden;
       }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
       .header {
+        background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.7));
+        color: var(--tesla-white);
+        padding: 2rem 0;
         text-align: center;
-        margin-bottom: 20px;
-      }
-      .header img {
-        max-width: 200px; /* Control the size of the image */
-        height: auto;
-      }
-      .header h1 {
-        font-size: 32px;
-      }
-      .section {
-        margin-bottom: 20px;
-      }
-      .expandable-content {
-        max-height: 0;
+        position: relative;
         overflow: hidden;
-        padding: 15px;
-        transition: max-height 0.3s ease;
       }
-      .expandable-button {
-        cursor: pointer;
-        color: #007bff;
-        text-decoration: none;
-        background-color: #f9f9f9;
-        padding: 10px;
-        display: inline-block;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        text-align: left;
-        transition: all 0.3s ease;
+
+      .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at center, rgba(204,0,0,0.1) 0%, transparent 70%);
+        z-index: 1;
       }
-      .expandable-button:hover {
-        background-color: #007bff;
-        color: white;
+
+      .header img {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 2;
+        filter: brightness(0) invert(1);
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+      }
+
+      .last-updated {
+        font-size: 0.8rem;
+        color: var(--tesla-silver);
+        text-align: center;
+        margin: 1rem 0;
+      }
+
+      .overview {
+        background: var(--tesla-white);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 2rem auto;
+        padding: 2rem;
+        max-width: 1000px;
+      }
+
+      .overview section {
+        margin: 1.5rem 0;
+        padding: 1.5rem;
+        background: var(--tesla-gray);
+        border-radius: 8px;
+        transition: transform var(--transition-speed);
+      }
+
+      .overview section:hover {
+        transform: translateY(-2px);
+      }
+
+      .calculator-section {
+        background: linear-gradient(135deg, #fff, #f4f4f4);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        margin: 2rem auto;
+        max-width: 1000px;
+      }
+
+      .calculator-section h2 {
+        color: var(--tesla-black);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
       }
 
       .slider-group {
-        margin-bottom: 20px;
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       }
 
-      label {
-        display: block;
+      .slider-group label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
       }
 
-      #result {
-        margin-top: 20px;
-        font-size: 20px;
+      .slider-group span {
+        color: var(--tesla-red);
+        font-weight: 700;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        height: 5px;
+        background: #ddd;
+        border-radius: 5px;
+        outline: none;
+        -webkit-appearance: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        background: var(--tesla-red);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background var(--transition-speed);
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        background: #990000;
+      }
+
+      .calculator-controls {
+        display: flex;
+        justify-content: center;
+        margin: 2rem 0;
+      }
+
+      .reset-button {
+        background: var(--tesla-black);
+        color: var(--tesla-white);
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all var(--transition-speed);
+      }
+
+      .reset-button:hover {
+        background: var(--tesla-red);
+        transform: translateY(-2px);
+      }
+
+      .result {
+        text-align: center;
+        padding: 2rem;
+        background: var(--tesla-black);
+        color: var(--tesla-white);
+        border-radius: 10px;
+        margin-top: 2rem;
+      }
+
+      .result #estimatedStockPrice {
+        font-size: 3rem;
+        font-weight: 700;
+        color: var(--tesla-red);
+      }
+
+      .disclaimer {
+        font-size: 0.8rem;
+        color: var(--tesla-silver);
+        text-align: center;
+        margin-top: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        .header h1 {
+          font-size: 2rem;
+        }
+
+        .overview section {
+          padding: 1rem;
+        }
+
+        .calculator-section {
+          padding: 1.5rem;
+        }
+
+        .slider-group {
+          padding: 1rem;
+        }
+
+        .slider-group label {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .slider-group span {
+          margin-top: 0.5rem;
+        }
+
+        .result #estimatedStockPrice {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header img {
+          max-width: 140px;
+        }
+
+        .header h1 {
+          font-size: 1.75rem;
+        }
+
+        .calculator-section h2 {
+          font-size: 1.5rem;
+        }
+
+        .result #estimatedStockPrice {
+          font-size: 2rem;
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.6s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
       }
     </style>
   </head>
   <body>
     <div class="header">
-      <img src="../../../images/Tesla_logo.png" alt="Tesla Logo" />
-      <h1>Tesla Motors, Inc.</h1>
-    </div>
-
-    <p style="font-size: xx-small; text-align: center">
-      Last updated 4/24/2024
-    </p>
-
-    <div class="overview section">
-      <!-- <h2>TL;DR</h2> -->
-      <p>
-        Tesla should not be looked as a car company. It's a robotics, AI, and
-        energy company.
-      </p>
-
-      <section>
-        <!-- <h2>Fully Autonomous Vehicles</h2> -->
-        <p>
-          The dominance of their position in the race to build a fully
-          autonomous vehicle is the nearest term catalyst for meaningful growth
-          in the value of the company. The Cybercab will be unveiled on August
-          8th of this year (2024). This is their purpose-built robotaxi designed
-          without a steering wheel or pedals which points to their confidence
-          that their self-driving technology will be ready for prime time by the
-          time the Cybercab is in production likely in 2025. Tesla is uniquely
-          positioned to build and deploy autonomous vehicles.
-        </p>
-      </section>
-
-      <section>
-        <!-- <h2>Electric Vehicle Manufacturing</h2> -->
-        <p>
-          Tesla is the only company in America that can profitably manufacture
-          and sell electric vehicles. Not only are they the only company that is
-          not losing money on every EV they sell, Tesla's EV profit margins are
-          significantly higher than even traditional combustion engine vehicles.
-          Tesla's manufacturing talent is the best in the world and will be a
-          significant advantage for the foreseeable future.
-        </p>
-      </section>
-
-      <section>
-        <!-- <h2>Utility Scale Energy Storage</h2> -->
-        <p>
-          Tesla's utility scale energy storage products business is growing
-          faster than their car business. Demand is gigantic across the world
-          for these products and growth is only constrained by the speed of
-          their production ramp. These products are more scalable, modular, come
-          with advanced software and controls, are more cost-effective, and can
-          be deployed more rapidly than traditional grid storage solutions.
-        </p>
-      </section>
-
-      <section>
-        <!-- <h2>Tesla Bot</h2> -->
-        <p>
-          The Tesla Bot has the potential to be more valuable than all other
-          Tesla businesses combined. Demand for a general purpose humanoid robot
-          is effectively unlimited. A useful general purpose humanoid robot has
-          financial potential that is on the scale of the entire global economy.
-          An economy is just useful labor multiplied by number of laborers. If
-          there is no longer a constraint on the number of laborers, there is no
-          longer a constraint on the size of the economy. Tesla's existing
-          dominance in manufacturing, AI, inference compute, and robotics
-          (electric motors and actuators), positions them perfectly to realize
-          this potential.
-        </p>
-      </section>
-
-      <section>
-        <!-- <h2>Charging Infrastructure</h2> -->
-        <p>
-          Tesla's charging infrastructure is the best in the world and is
-          growing rapidly. Every major car company in the US has agreed to
-          and announced plans to switch to using Tesla's charging ports and
-          supercharger network.
-        </p>
-      </section>
-
-      <section>
-        <!-- <h2>Additional Ventures</h2> -->
-        <p>
-          Other things: Tesla's growing insurance business, growing solar
-          business, potential for AWS-like cloud computing for AI training and
-          inference, Tesla's growing home energy storage business, future
-          products such as autonomous busses, vans, etc., licensing self-driving
-          technology, and more.
-        </p>
-      </section>
-    </div>
-
-    <!-- <div class="current-endeavors section">
-      <h2>Today</h2>
-      <div
-        onclick="toggleExpandable('vehicle-production')"
-        class="expandable-button"
-      >
-        Vehicle Production and Global Expansion
-      </div>
-      <div id="vehicle-production" class="expandable-content">
-        <p>
-          Tesla has expanded its production to over one million vehicles at
-          sites in the US and China, with plans to build new factories in Berlin
-          and enter the Indian market[2].
-        </p>
-      </div>
-      <div
-        onclick="toggleExpandable('energy-solutions')"
-        class="expandable-button"
-      >
-        Energy Solutions and Sustainability Efforts
-      </div>
-      <div id="energy-solutions" class="expandable-content">
-        <p>
-          Tesla is not only a car manufacturer but also produces solar panels
-          and batteries for cars and home power storage, aiming to replace some
-          of the planet's biggest polluters[3].
-        </p>
+      <div class="container">
+        <img src="../../../images/Tesla_logo.png" alt="Tesla Logo" class="fade-in" />
+        <h1 class="fade-in">Tesla Motors, Inc.</h1>
       </div>
     </div>
 
-    <div class="culture-track-record section">
-      <h2>Culture and Track Record</h2>
-      <div
-        onclick="toggleExpandable('founding-early-years')"
-        class="expandable-button"
-      >
-        Founding and Early Years
-      </div>
-      <div id="founding-early-years" class="expandable-content">
-        <p>
-          Tesla was founded in 2003 by Martin Eberhard and Marc Tarpenning and
-          was named after inventor Nikola Tesla. Elon Musk became involved as
-          chairman in 2004 and later took over as CEO. The company released its
-          first electric car, the Roadster, in 2008, which was notable for its
-          impressive range and performance[1][5].
-        </p>
-      </div>
-    </div>
+    <div class="container">
+      <p class="last-updated">Last updated 4/24/2024</p>
 
-    <div class="future-opportunities section">
-      <h2>Future Opportunities</h2>
-      <div
-        onclick="toggleExpandable('vehicle-lineup-expansion')"
-        class="expandable-button"
-      >
-        Expansion of the Vehicle Lineup
-      </div>
-      <div id="vehicle-lineup-expansion" class="expandable-content">
-        <p>
-          Tesla plans to start production of a new mass market electric vehicle
-          codenamed "Redwood" in mid-2025, which is expected to be a compact
-          crossover[6].
-        </p>
-      </div>
-      <div
-        onclick="toggleExpandable('tesla-bot-optimus')"
-        class="expandable-button"
-      >
-        The Future of Tesla Bot, Optimus
-      </div>
-      <div id="tesla-bot-optimus" class="expandable-content">
-        <p>
-          Optimus, also known as Tesla Bot, is a general-purpose robotic
-          humanoid under development by Tesla. It is designed to perform tasks
-          that are dangerous, repetitive, or boring. Elon Musk has stated that
-          Optimus could be production-ready by 2023 and could be more
-          significant than Tesla's vehicle business[4].
-        </p>
-      </div>
-    </div> -->
+      <div class="overview fade-in">
+        <section>
+          <p>Tesla should not be looked as a car company. It's a robotics, AI, and energy company.</p>
+        </section>
 
-    <h2>Stock Price Estimator</h2>
-    <div class="slider-group">
-      <label for="evSales"
-        >EV Sales per Year: <span id="evSalesValue">1810000</span></label
-      >
-      <input
-        type="range"
-        id="evSales"
-        min="100000"
-        max="20000000"
-        value="1810000"
-        step="100000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="avgSellingPrice"
-        >Average Selling Price ($):
-        <span id="avgSellingPriceValue">42000</span></label
-      >
-      <input
-        type="range"
-        id="avgSellingPrice"
-        min="20000"
-        max="100000"
-        value="42000"
-        step="1000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="profitMargin"
-        >Operating Margin (%): <span id="evProfitMarginValue">8</span></label
-      >
-      <input
-        type="range"
-        id="evProfitMargin"
-        min="0"
-        max="30"
-        value="8"
-        step="0.1"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="robotaxis"
-        >Robotaxis: <span id="robotaxisValue">1000000</span></label
-      >
-      <input
-        type="range"
-        id="robotaxis"
-        min="0"
-        max="10000000"
-        value="0"
-        step="100000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="robotaxisRevenuePerCar"
-        >Robotaxi Revenue per Car per Year ($):
-        <span id="robotaxisRevenuePerCarValue">15000</span></label
-      >
-      <input
-        type="range"
-        id="robotaxisRevenuePerCar"
-        min="1000"
-        max="50000"
-        value="15000"
-        step="1000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="robotaxisProfitMargin"
-        >Robotaxi Profit Margin (%):
-        <span id="robotaxisProfitMarginValue">80</span></label
-      >
-      <input
-        type="range"
-        id="robotaxisProfitMargin"
-        min="0"
-        max="80"
-        value="80"
-        step="1"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="optimusSales"
-        >Optimus Sales per Year: <span id="optimusSalesValue">0</span></label
-      >
-      <input
-        type="range"
-        id="optimusSales"
-        min="0"
-        max="10000000"
-        value="0"
-        step="10000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="optimusPrice"
-        >Optimus Price per Unit ($): <span id="optimusPriceValue">20000</span></label
-      >
-      <input
-        type="range"
-        id="optimusPrice"
-        min="5000"
-        max="100000"
-        value="20000"
-        step="1000"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="optimusProfitMargin"
-        >Optimus Profit Margin (%): <span id="optimusProfitMarginValue">60</span></label
-      >
-      <input
-        type="range"
-        id="optimusProfitMargin"
-        min="0"
-        max="80"
-        value="60"
-        step="1"
-      />
-    </div>
-    <div class="slider-group">
-      <label for="peRatio">P/E Ratio: <span id="peRatioValue">183</span></label>
-      <input type="range" id="peRatio" min="1" max="200" value="183" step="1" />
-    </div>
-    <div class="slider-group">
-      <label for="sharesOutstanding"
-        >Shares Outstanding (millions):
-        <span id="sharesOutstandingValue">3190</span></label
-      >
-      <input
-        type="range"
-        id="sharesOutstanding"
-        min="500"
-        max="5000"
-        value="3190"
-        step="10"
-      />
-    </div>
-    <button onclick="resetValues()">Reset</button>
-    <p style="font-size: xx-small">
-      Estimate does not include energy generation or storage products,
-      tesla services, ev charging infrastructure, potential FSD licensing, or
-      any other potential businesses. Meaning this is a conservative estimate.
-    </p>
-    <div id="result">
-      Estimated Stock Price: $<span id="estimatedStockPrice">-</span>
+        <section>
+          <p>The dominance of their position in the race to build a fully autonomous vehicle is the nearest term catalyst for meaningful growth in the value of the company. The Cybercab will be unveiled on August 8th of this year (2024). This is their purpose-built robotaxi designed without a steering wheel or pedals which points to their confidence that their self-driving technology will be ready for prime time by the time the Cybercab is in production likely in 2025. Tesla is uniquely positioned to build and deploy autonomous vehicles.</p>
+        </section>
+
+        <section>
+          <p>Tesla is the only company in America that can profitably manufacture and sell electric vehicles. Not only are they the only company that is not losing money on every EV they sell, Tesla's EV profit margins are significantly higher than even traditional combustion engine vehicles. Tesla's manufacturing talent is the best in the world and will be a significant advantage for the foreseeable future.</p>
+        </section>
+
+        <section>
+          <p>Tesla's utility scale energy storage products business is growing faster than their car business. Demand is gigantic across the world for these products and growth is only constrained by the speed of their production ramp. These products are more scalable, modular, come with advanced software and controls, are more cost-effective, and can be deployed more rapidly than traditional grid storage solutions.</p>
+        </section>
+
+        <section>
+          <p>The Tesla Bot has the potential to be more valuable than all other Tesla businesses combined. Demand for a general purpose humanoid robot is effectively unlimited. A useful general purpose humanoid robot has financial potential that is on the scale of the entire global economy. An economy is just useful labor multiplied by number of laborers. If there is no longer a constraint on the number of laborers, there is no longer a constraint on the size of the economy. Tesla's existing dominance in manufacturing, AI, inference compute, and robotics (electric motors and actuators), positions them perfectly to realize this potential.</p>
+        </section>
+
+        <section>
+          <p>Tesla's charging infrastructure is the best in the world and is growing rapidly. Every major car company in the US has agreed to and announced plans to switch to using Tesla's charging ports and supercharger network.</p>
+        </section>
+
+        <section>
+          <p>Other things: Tesla's growing insurance business, growing solar business, potential for AWS-like cloud computing for AI training and inference, Tesla's growing home energy storage business, future products such as autonomous busses, vans, etc., licensing self-driving technology, and more.</p>
+        </section>
+      </div>
+
+      <div class="calculator-section fade-in">
+        <h2>Stock Price Estimator</h2>
+        
+        <div class="slider-group">
+          <label>EV Sales per Year <span id="evSalesValue">1,810,000</span></label>
+          <input type="range" id="evSales" min="100000" max="20000000" value="1810000" step="100000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Average Selling Price ($) <span id="avgSellingPriceValue">42,000</span></label>
+          <input type="range" id="avgSellingPrice" min="20000" max="100000" value="42000" step="1000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Operating Margin (%) <span id="evProfitMarginValue">8</span></label>
+          <input type="range" id="evProfitMargin" min="0" max="30" value="8" step="0.1" />
+        </div>
+
+        <div class="slider-group">
+          <label>Robotaxis <span id="robotaxisValue">1,000,000</span></label>
+          <input type="range" id="robotaxis" min="0" max="10000000" value="0" step="100000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Robotaxi Revenue per Car per Year ($) <span id="robotaxisRevenuePerCarValue">15,000</span></label>
+          <input type="range" id="robotaxisRevenuePerCar" min="1000" max="50000" value="15000" step="1000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Robotaxi Profit Margin (%) <span id="robotaxisProfitMarginValue">80</span></label>
+          <input type="range" id="robotaxisProfitMargin" min="0" max="80" value="80" step="1" />
+        </div>
+
+        <div class="slider-group">
+          <label>Optimus Sales per Year <span id="optimusSalesValue">0</span></label>
+          <input type="range" id="optimusSales" min="0" max="10000000" value="0" step="10000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Optimus Price per Unit ($) <span id="optimusPriceValue">20,000</span></label>
+          <input type="range" id="optimusPrice" min="5000" max="100000" value="20000" step="1000" />
+        </div>
+
+        <div class="slider-group">
+          <label>Optimus Profit Margin (%) <span id="optimusProfitMarginValue">60</span></label>
+          <input type="range" id="optimusProfitMargin" min="0" max="80" value="60" step="1" />
+        </div>
+
+        <div class="slider-group">
+          <label>P/E Ratio <span id="peRatioValue">183</span></label>
+          <input type="range" id="peRatio" min="1" max="200" value="183" step="1" />
+        </div>
+
+        <div class="slider-group">
+          <label>Shares Outstanding (millions) <span id="sharesOutstandingValue">3,190</span></label>
+          <input type="range" id="sharesOutstanding" min="500" max="5000" value="3190" step="10" />
+        </div>
+
+        <div class="calculator-controls">
+          <button onclick="resetValues()" class="reset-button">Reset Values</button>
+        </div>
+
+        <div class="result">
+          <div>Estimated Stock Price</div>
+          <div id="estimatedStockPrice">-</div>
+        </div>
+
+        <p class="disclaimer">
+          Estimate does not include energy generation or storage products,
+          tesla services, ev charging infrastructure, potential FSD licensing, or
+          any other potential businesses. Meaning this is a conservative estimate.
+        </p>
+      </div>
     </div>
 
     <script>
@@ -391,33 +412,19 @@
           content.style.maxHeight = content.scrollHeight + 'px';
         }
       }
+
       function updateStockPrice() {
         const evSales = parseInt(document.getElementById('evSales').value, 10);
-        const avgSellingPrice = parseInt(
-          document.getElementById('avgSellingPrice').value,
-          10
-        );
-        const robotaxis = parseInt(
-          document.getElementById('robotaxis').value,
-          10
-        );
-        const robotaxisRevenuePerCar = parseInt(
-          document.getElementById('robotaxisRevenuePerCar').value,
-          10
-        );
-        const evProfitMargin =
-          parseInt(document.getElementById('evProfitMargin').value, 10) / 100;
-        const robotaxisProfitMargin =
-          parseInt(document.getElementById('robotaxisProfitMargin').value, 10) /
-          100;
+        const avgSellingPrice = parseInt(document.getElementById('avgSellingPrice').value, 10);
+        const robotaxis = parseInt(document.getElementById('robotaxis').value, 10);
+        const robotaxisRevenuePerCar = parseInt(document.getElementById('robotaxisRevenuePerCar').value, 10);
+        const evProfitMargin = parseInt(document.getElementById('evProfitMargin').value, 10) / 100;
+        const robotaxisProfitMargin = parseInt(document.getElementById('robotaxisProfitMargin').value, 10) / 100;
         const optimusSales = parseInt(document.getElementById('optimusSales').value, 10);
         const optimusPrice = parseInt(document.getElementById('optimusPrice').value, 10);
-        const optimusProfitMargin = 
-          parseInt(document.getElementById('optimusProfitMargin').value, 10) / 100;
+        const optimusProfitMargin = parseInt(document.getElementById('optimusProfitMargin').value, 10) / 100;
         const peRatio = parseInt(document.getElementById('peRatio').value, 10);
-        const sharesOutstanding =
-          parseInt(document.getElementById('sharesOutstanding').value, 10) *
-          1e6;
+        const sharesOutstanding = parseInt(document.getElementById('sharesOutstanding').value, 10) * 1e6;
 
         const evRevenue = evSales * avgSellingPrice;
         const robotaxisRevenue = robotaxis * robotaxisRevenuePerCar;
@@ -431,54 +438,21 @@
         const marketCap = netEarnings * peRatio;
         const stockPrice = marketCap / sharesOutstanding;
 
-        document.getElementById('estimatedStockPrice').innerText =
-          stockPrice.toFixed(2);
+        document.getElementById('estimatedStockPrice').innerText = '$' + stockPrice.toFixed(2);
       }
 
       function updateValues() {
-        document.getElementById('evSalesValue').innerText = parseInt(
-          document.getElementById('evSales').value,
-          10
-        ).toLocaleString();
-        document.getElementById('avgSellingPriceValue').innerText = parseInt(
-          document.getElementById('avgSellingPrice').value,
-          10
-        ).toLocaleString();
-        document.getElementById('evProfitMarginValue').innerText = parseInt(
-          document.getElementById('evProfitMargin').value,
-          10
-        );
-        document.getElementById('robotaxisValue').innerText = parseInt(
-          document.getElementById('robotaxis').value,
-          10
-        ).toLocaleString();
-        document.getElementById('robotaxisRevenuePerCarValue').innerText =
-          parseInt(
-            document.getElementById('robotaxisRevenuePerCar').value,
-            10
-          ).toLocaleString();
-        document.getElementById('robotaxisProfitMarginValue').innerText =
-          parseInt(document.getElementById('robotaxisProfitMargin').value, 10);
-        document.getElementById('optimusSalesValue').innerText = parseInt(
-          document.getElementById('optimusSales').value,
-          10
-        ).toLocaleString();
-        document.getElementById('optimusPriceValue').innerText = parseInt(
-          document.getElementById('optimusPrice').value,
-          10
-        ).toLocaleString();
-        document.getElementById('optimusProfitMarginValue').innerText = parseInt(
-          document.getElementById('optimusProfitMargin').value,
-          10
-        );
-        document.getElementById('peRatioValue').innerText = parseInt(
-          document.getElementById('peRatio').value,
-          10
-        );
-        document.getElementById('sharesOutstandingValue').innerText = parseInt(
-          document.getElementById('sharesOutstanding').value,
-          10
-        ).toLocaleString();
+        document.getElementById('evSalesValue').innerText = parseInt(document.getElementById('evSales').value, 10).toLocaleString();
+        document.getElementById('avgSellingPriceValue').innerText = parseInt(document.getElementById('avgSellingPrice').value, 10).toLocaleString();
+        document.getElementById('evProfitMarginValue').innerText = parseInt(document.getElementById('evProfitMargin').value, 10);
+        document.getElementById('robotaxisValue').innerText = parseInt(document.getElementById('robotaxis').value, 10).toLocaleString();
+        document.getElementById('robotaxisRevenuePerCarValue').innerText = parseInt(document.getElementById('robotaxisRevenuePerCar').value, 10).toLocaleString();
+        document.getElementById('robotaxisProfitMarginValue').innerText = parseInt(document.getElementById('robotaxisProfitMargin').value, 10);
+        document.getElementById('optimusSalesValue').innerText = parseInt(document.getElementById('optimusSales').value, 10).toLocaleString();
+        document.getElementById('optimusPriceValue').innerText = parseInt(document.getElementById('optimusPrice').value, 10).toLocaleString();
+        document.getElementById('optimusProfitMarginValue').innerText = parseInt(document.getElementById('optimusProfitMargin').value, 10);
+        document.getElementById('peRatioValue').innerText = parseInt(document.getElementById('peRatio').value, 10);
+        document.getElementById('sharesOutstandingValue').innerText = parseInt(document.getElementById('sharesOutstanding').value, 10).toLocaleString();
         updateStockPrice();
       }
 
@@ -497,39 +471,34 @@
         updateValues();
       }
 
-      document
-        .getElementById('evSales')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('avgSellingPrice')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('evProfitMargin')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('robotaxis')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('robotaxisRevenuePerCar')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('robotaxisProfitMargin')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('optimusSales')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('optimusPrice')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('optimusProfitMargin')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('peRatio')
-        .addEventListener('input', updateValues);
-      document
-        .getElementById('sharesOutstanding')
-        .addEventListener('input', updateValues);
+      // Add event listeners
+      const sliders = [
+        'evSales', 'avgSellingPrice', 'evProfitMargin', 'robotaxis',
+        'robotaxisRevenuePerCar', 'robotaxisProfitMargin', 'optimusSales',
+        'optimusPrice', 'optimusProfitMargin', 'peRatio', 'sharesOutstanding'
+      ];
+
+      sliders.forEach(sliderId => {
+        document.getElementById(sliderId).addEventListener('input', updateValues);
+      });
+
+      // Add fade-in animation to sections on scroll
+      function handleIntersection(entries, observer) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }
+
+      const observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+      });
 
       // Initial update
       updateValues();
